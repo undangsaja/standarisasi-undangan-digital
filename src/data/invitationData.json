@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "title": "The Wedding of Dimas & Sarah",
+    "theme": "champagne-elegance",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/16/audio_c97feb3f49.mp3?filename=romantic-wedding-113098.mp3",
+    "coverImage": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80"
+  },
+  "couple": {
+    "greeting": "Assalamu'alaikum Warahmatullahi Wabarakatuh",
+    "intro": "Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri momen istimewa pernikahan kami:",
+    "groom": {
+      "fullName": "Dimas Arya Wicaksana, S.T.",
+      "nickName": "Dimas",
+      "father": "Bapak Bambang Wicaksana",
+      "mother": "Ibu Sri Rahayu",
+      "order": "Putra pertama dari",
+      "instagram": "https://instagram.com/dimas.wicaksana",
+      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+    },
+    "bride": {
+      "fullName": "Sarah Amelia Ramadhani, S.Farm.",
+      "nickName": "Sarah",
+      "father": "Bapak Hendro Prasetyo",
+      "mother": "Ibu Nur Hasanah",
+      "order": "Putri kedua dari",
+      "instagram": "https://instagram.com/sarah.amelia",
+      "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+    }
+  },
+  "quotes": {
+    "source": "QS. Ar-Rum: 21",
+    "content": "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+  },
+  "countdown": {
+    "targetDate": "2026-12-25T09:00:00+07:00",
+    "title": "Menghitung Hari Bahagia"
+  },
+  "events": [
+    {
+      "id": "akad",
+      "type": "Akad Nikah",
+      "day": "Jumat",
+      "date": "25 Desember 2026",
+      "time": "08:00 - 10:00 WIB",
+      "venue": "Masjid Agung Al-Barkah",
+      "address": "Jl. Veteran No. 12, Senayan, Jakarta Pusat",
+      "googleMapsUrl": "https://maps.google.com/?q=Senayan+Jakarta",
+      "embedMapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.297464195155!2d106.80004547499047!3d-6.224451093763704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14f1776bbcf%3A0x67398188eaebf7e8!2sSenayan%2C%20Kec.%20Kby.%20Baru%2C%20Kota%20Jakarta%20Selatan!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+    },
+    {
+      "id": "resepsi",
+      "type": "Resepsi Pernikahan",
+      "day": "Jumat",
+      "date": "25 Desember 2026",
+      "time": "11:30 - 15:00 WIB",
+      "venue": "Grand Ballroom Hotel Indonesia",
+      "address": "Jl. M.H. Thamrin No. 1, Menteng, Jakarta Pusat",
+      "googleMapsUrl": "https://maps.google.com/?q=Hotel+Indonesia+Kempinski+Jakarta",
+      "embedMapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.529815599557!2d106.82061327499026!3d-6.193599993794175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f42147321eab%3A0x88241473860bb402!2sHotel%20Indonesia%20Kempinski%20Jakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1,
+      "url": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80",
+      "caption": "Momen Pertama Bersua"
+    },
+    {
+      "id": 2,
+      "url": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80",
+      "caption": "Janji Dua Hati"
+    },
+    {
+      "id": 3,
+      "url": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
+      "caption": "Langkah Menuju Hari Bahagia"
+    },
+    {
+      "id": 4,
+      "url": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80",
+      "caption": "Dekapan Kasih"
+    },
+    {
+      "id": 5,
+      "url": "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80",
+      "caption": "Tatap Masa Depan"
+    },
+    {
+      "id": 6,
+      "url": "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80",
+      "caption": "Bersama Selamanya"
+    }
+  ],
+  "gifts": [
+    {
+      "id": "bca",
+      "type": "bank",
+      "bankName": "BCA",
+      "accountNumber": "8720194821",
+      "accountHolder": "Dimas Arya Wicaksana",
+      "logo": "BCA"
+    },
+    {
+      "id": "mandiri",
+      "type": "bank",
+      "bankName": "Bank Mandiri",
+      "accountNumber": "1370018294711",
+      "accountHolder": "Sarah Amelia Ramadhani",
+      "logo": "MANDIRI"
+    },
+    {
+      "id": "qris",
+      "type": "qris",
+      "title": "QRIS Amplop Digital",
+      "qrImage": "https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://schema-undangan.digital/gift",
+      "description": "Bisa di-scan menggunakan seluruh aplikasi m-Banking dan E-Wallet (GoPay, OVO, Dana, ShopeePay)"
+    },
+    {
+      "id": "physical",
+      "type": "physical",
+      "title": "Kirim Kado Fisik",
+      "recipient": "Dimas & Sarah",
+      "phone": "+62 812-3456-7890",
+      "address": "Jl. Kemang Raya No. 42B, Mampang Prapatan, Jakarta Selatan, DKI Jakarta 12730"
+    }
+  ],
+  "thanks": {
+    "message": "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.",
+    "closing": "Wassalamu'alaikum Warahmatullahi Wabarakatuh",
+    "family": "Keluarga Besar Bpk. Bambang Wicaksana & Bpk. Hendro Prasetyo"
+  }
+}

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>PRD - Standarisasi Template Undangan Digital ReactJS</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+      @bottom-right {
+        content: counter(page);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 8pt;
+        color: #94a3b8;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      font-size: 9.5pt;
+      background-color: #ffffff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .header-banner {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .badge-doc {
+      display: inline-block;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 8pt;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 19pt;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 10.5pt;
+      color: #64748b;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .meta-table {
+      width: 100%;
+      margin-bottom: 24px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .meta-item .label {
+      font-size: 7.5pt;
+      color: #64748b;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-item .val {
+      font-size: 9pt;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2px;
+    }
+
+    h2 {
+      font-size: 12.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-left: 4px solid #3b82f6;
+      padding-left: 10px;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    strong {
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px 0;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    table th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+      text-align: left;
+      padding: 8px 10px;
+      border: 1px solid #cbd5e1;
+    }
+
+    table td {
+      padding: 7px 10px;
+      border: 1px solid #e2e8f0;
+      vertical-align: top;
+      color: #334155;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    .callout {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin: 12px 0;
+      font-size: 9pt;
+      color: #1e40af;
+      page-break-inside: avoid;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.8pt;
+      line-height: 1.45;
+      margin: 10px 0 14px 0;
+      overflow-x: auto;
+      page-break-inside: avoid;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 8pt;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .badge-tag {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      font-size: 7.5pt;
+      font-weight: 600;
+    }
+
+    .badge-primary { background: #dbeafe; color: #1e40af; }
+    .badge-success { background: #dcfce7; color: #166534; }
+    .badge-warning { background: #fef3c7; color: #92400e; }
+
+    .diagram-box {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      padding: 10px;
+      margin: 10px 0 14px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      color: #0f172a;
+      line-height: 1.4;
+      white-space: pre;
+      page-break-inside: avoid;
+    }
+
+    .footer {
+      margin-top: 24px;
+      padding-top: 10px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 8pt;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header-banner">
+    <div>
+      <div class="badge-doc">Product Requirements Document</div>
+      <h1>Standarisasi Template Undangan Digital</h1>
+      <div class="subtitle">Spesifikasi Desain, UX/UI, Parameter Dinamis, dan Arsitektur Komponen ReactJS</div>
+    </div>
+  </div>
+
+  <!-- META INFO -->
+  <div class="meta-table">
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="label">Dokumen Versi</div>
+        <div class="val">v1.0.0 (Final Draft)</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Tanggal Dibuat</div>
+        <div class="val">6 Oktober 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Tech Stack</div>
+        <div class="val">ReactJS & Tailwind CSS</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Status</div>
+        <div class="val"><span class="badge-tag badge-success">Approved for Development</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2>1. Pendahuluan & Latar Belakang</h2>
+  <p>
+    Undangan digital berbasis website saat ini merupakan media interaksi utama dalam pernikahan dan acara formal. Namun, kendala umum yang sering terjadi di industri mencakup tampilan yang melebar tak beraturan saat dibuka di layar laptop/PC, tombol navigasi bawah yang kaku dan menutupi konten, serta kesulitan dalam mempersonalisasi nama tamu secara otomatis.
+  </p>
+  <p>
+    Dokumen ini menyusun <strong>standarisasi arsitektur dan pengalaman pengguna (UX)</strong> untuk pembuatan template undangan digital berbasis <strong>ReactJS</strong>, memastikan konsistensi visual di berbagai resolusi layar, navigasi yang intuitif, serta arsitektur data modular.
+  </p>
+
+  <h3>Tujuan Produk (Core Objectives)</h3>
+  <ul>
+    <li><strong>Standar Tampilan Mobile-First:</strong> Layout otomatis terkunci dalam rasio mobile screen dan berada tepat di tengah layar ketika dibuka di laptop/PC.</li>
+    <li><strong>Floating Pill Bottom Navbar:</strong> Navigasi bawah berbentuk melayang (*floating*), tidak *full-width*, berujung melengkung penuh (*full rounded*), dan mendukung interaksi satu tangan.</li>
+    <li><strong>Personalisasi Tamu via URL:</strong> Otomasi pembacaan nama tamu dari parameter URL (contoh: <code>/wedding-invitation?name=Putra</code>) dengan sanitasi data dan *fallback* aman.</li>
+    <li><strong>9 Seksi Halaman Terstandarisasi:</strong> Struktur alur konten seragam mulai dari *Opening, Couple, Quotes, Event, Countdown, Galeri, RSVP, Gift,* hingga *Thanks*.</li>
+    <li><strong>Data-Driven Architecture:</strong> Seluruh teks, tanggal, foto, jadwal acara, dan nomor rekening dipisahkan ke dalam satu file konfigurasi JSON.</li>
+  </ul>
+
+  <!-- SECTION 2 -->
+  <h2>2. Standarisasi Layout & User Experience (UX/UI)</h2>
+
+  <h3>2.1 Viewport Container (Strict 100vh - Zero Scroll Layout)</h3>
+  <ul>
+    <li><strong>Ketinggian Terkunci Maksimal 100vh / 100dvh:</strong> Container dan setiap seksi tidak dapat di-scroll (<code>overflow-hidden</code>), memastikan seluruh informasi pas di layar tanpa terpotong atau tertutup.</li>
+    <li><strong>Mobile Devices (&lt; 480px):</strong> Tampilan memenuhi layar 100% lebar dan 100dvh tinggi.</li>
+    <li><strong>Desktop / Laptop / Tablet (&gt; 480px):</strong>
+      <ul>
+        <li>Container konten terkunci pada lebar smartphone modern: <code>max-w-[440px]</code> dan tinggi tepat 100dvh.</li>
+        <li>Container diposisikan tepat di <strong>tengah layar secara horizontal (mx-auto)</strong>.</li>
+        <li>Area luar container diisi dengan backdrop gelap dan ambient glow estetik.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>2.2 Bottom Floating Navbar (4 Menu Tampil & Horizontal Scrollable)</h3>
+  <ul>
+    <li><strong>Posisi:</strong> Melayang di bagian bawah layar (<code>bottom-3</code>) di dalam batas mobile container.</li>
+    <li><strong>Kapasitas Tampilan:</strong> Menampilkan tepat <strong>4 menu ikon sekaligus</strong> secara proporsional (tidak berdesakan).</li>
+    <li><strong>Scroll Horizontal:</strong> Dapat digulirkan ke kanan dan ke kiri secara halus (<code>overflow-x-auto snap-x</code>), dilengkapi tombol panah navigasi di kedua sisi.</li>
+    <li><strong>Pill Shaped:</strong> Berbentuk kapsul rounded penuh dengan efek kaca <em>glassmorphism</em> (<code>backdrop-blur-xl</code>) dan border gold tipis.</li>
+    <li><strong>Auto Scroll Active Tab:</strong> Tab yang sedang aktif otomatis berpindah ke tengah viewport navbar.</li>
+  </ul>
+
+  <h3>2.3 Kontrol Pemutar Audio & Musik</h3>
+  <div class="callout">
+    <div class="callout-title">Aturan Autoplay Browser Modern</div>
+    Browser modern (Chrome, Safari, Edge) memblokir audio autoplay sebelum adanya interaksi pengguna. Audio otomatis diputar setelah tamu menekan tombol <strong>"Buka Undangan"</strong> di seksi Opening.
+  </div>
+  <ul>
+    <li>Tombol melayang (*floating action button*) pemutar musik disediakan di sudut atas/bawah untuk memutar atau menjeda musik sewaktu-waktu.</li>
+    <li>Tampilan visual ikon berputar secara halus saat musik sedang dimainkan (*spinning vinyl effect*).</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 3 -->
+  <h2>3. Spesifikasi Parameter URL & Personalisasi Tamu</h2>
+  <p>Untuk memudahkan distribusi undangan via WhatsApp/Instagram/Email, nama tamu disematkan langsung di dalam URL query parameter.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Komponen</th>
+        <th style="width: 35%;">Format / Contoh</th>
+        <th style="width: 40%;">Keterangan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Primary Parameter</strong></td>
+        <td><code>?name=Putra</code></td>
+        <td>Parameter utama yang diekstrak oleh aplikasi.</td>
+      </tr>
+      <tr>
+        <td><strong>Dukungan Spasi / Simbol</strong></td>
+        <td><code>?name=Putra%20Wira</code> atau <code>?name=Putra+Wira</code></td>
+        <td>Aplikasi melakukan <code>decodeURIComponent()</code> otomatis.</td>
+      </tr>
+      <tr>
+        <td><strong>Parameter Alias</strong></td>
+        <td><code>?to=Putra</code> atau <code>?guest=Putra</code></td>
+        <td>Sistem mendukung alias jika pembuat tautan memakai variasi parameter.</td>
+      </tr>
+      <tr>
+        <td><strong>Fallback Default</strong></td>
+        <td>Teks: <em>"Tamu Undangan"</em></td>
+        <td>Ditampilkan jika URL diakses langsung tanpa query parameter.</td>
+      </tr>
+      <tr>
+        <td><strong>Sanitasi Keamanan</strong></td>
+        <td>Pembersihan tag HTML / Karakter Berbahaya</td>
+        <td>Mencegah kerentanan Cross-Site Scripting (XSS).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 4 -->
+  <h2>4. Standarisasi Struktur Halaman (9 Seksi Inti)</h2>
+
+  <div class="diagram-box">
+  ALUR KONTEN TEMPLATE UNDANGAN:
+  [01. Opening Cover] ──(Buka Undangan)──> [Unlock Scroll & Play Music]
+       ↓
+  [02. Couple] ──> [03. Quotes] ──> [04. Event & Maps] ──> [05. Countdown]
+       ↓
+  [06. Galeri] ──> [07. RSVP & Ucapan] ──> [08. Gift / Titip Kado] ──> [09. Thanks]
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 20%;">Seksi</th>
+        <th style="width: 40%;">Komponen & Konten Wajib</th>
+        <th style="width: 40%;">Aksi & Interaktivitas Pengguna</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Opening (Cover)</strong></td>
+        <td>Judul pernikahan, nama mempelai, tanggal utama, label <em>"Kepada Yth. Bapak/Ibu/Saudara/i:"</em>, dan nama tamu dinamis.</td>
+        <td>Tombol <strong>"Buka Undangan"</strong> untuk membuka lock scroll, memutar background audio, dan menampilkan floating navbar.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Couple (Mempelai)</strong></td>
+        <td>Salam pembuka, doa syukur, profil mempelai pria (foto, nama lengkap, gelar, orang tua, IG) dan profil mempelai wanita.</td>
+        <td>Link profil Instagram mempelai (opsional), transisi animasi fade-in saat di-scroll.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Quotes (Ayat/Doa)</strong></td>
+        <td>Kutipan ayat suci pernikahan (QS. Ar-Rum: 21 / ayat Alkitab) atau kata mutiara romantis beserta terjemahannya.</td>
+        <td>Tipografi estetik dengan aksen ornamen pemisah.</td>
+      </tr>
+      <tr>
+        <td><strong>4. Event (Acara)</strong></td>
+        <td>Jadwal terpisah untuk Akad Nikah / Pemberkatan dan Resepsi (hari, tanggal, jam, nama gedung, alamat lengkap).</td>
+        <td>Tombol <strong>"Buka Google Maps"</strong>, embed peta interaktif, dan tombol <strong>"Simpan ke Kalender"</strong> (Google Calendar / iCal).</td>
+      </tr>
+      <tr>
+        <td><strong>5. Countdown</strong></td>
+        <td>Komponen hitung mundur real-time: Hari, Jam, Menit, dan Detik menuju tanggal acara utama.</td>
+        <td>Pembaruan otomatis per detik; status berganti jadi <em>"Acara Sedang Berlangsung"</em> jika waktu tiba.</td>
+      </tr>
+      <tr>
+        <td><strong>6. Galeri</strong></td>
+        <td>Grid / Masonry susunan foto prewedding dan pemutar video teaser (embed YouTube/Vimeo/MP4).</td>
+        <td>Fitur <strong>Lightbox Modal</strong> (klik foto untuk melihat ukuran penuh dengan navigasi next/previous).</td>
+      </tr>
+      <tr>
+        <td><strong>7. RSVP & Ucapan</strong></td>
+        <td>Formulir konfirmasi kehadiran (Nama, Jumlah Kehadiran, Status Hadir/Tidak, Pesan Doa) dan daftar doa tamu.</td>
+        <td>Kirim formulir interaktif; daftar ucapan tertampil realtime layaknya buku tamu digital.</td>
+      </tr>
+      <tr>
+        <td><strong>8. Gift (Amplop Digital)</strong></td>
+        <td>Informasi Rekening Bank, QRIS digital, serta alamat tujuan untuk pengiriman kado fisik.</td>
+        <td>Tombol <strong>"Salin Nomor Rekening"</strong> & <strong>"Salin Alamat"</strong> dengan feedback toast notification.</td>
+      </tr>
+      <tr>
+        <td><strong>9. Thanks (Penutup)</strong></td>
+        <td>Ucapan terima kasih keluarga besar, foto penutup/siluet, serta footer copyright platform undangan.</td>
+        <td>Tombol kembali ke atas (*Back to Top*) atau link sosial media resmi.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 5 -->
+  <h2>5. Arsitektur Teknis & Struktur Data (ReactJS)</h2>
+
+  <h3>5.1 Tech Stack Standar</h3>
+  <ul>
+    <li><strong>Core Framework:</strong> ReactJS (dibuat menggunakan Vite untuk performa build cepat dan ringan).</li>
+    <li><strong>CSS Framework:</strong> Tailwind CSS (utility-first, responsive utilities, arbitrary values).</li>
+    <li><strong>Iconography:</strong> Lucide React (ikon modern, clean, dan konsisten).</li>
+    <li><strong>Animation Engine:</strong> Framer Motion (transisi halus saat buka undangan, reveal saat scroll, lightbox).</li>
+    <li><strong>Data Pattern:</strong> Single Source of Truth menggunakan <code>invitationData.json</code>.</li>
+  </ul>
+
+  <h3>5.2 Standarisasi Skema JSON (Single Config File)</h3>
+  <pre><code>{
+  "event": {
+    "title": "The Wedding of Dimas & Sarah",
+    "theme": "floral-gold",
+    "dateTarget": "2026-12-25T08:00:00+07:00",
+    "audioUrl": "/audio/wedding-song.mp3"
+  },
+  "couple": {
+    "groom": {
+      "fullName": "Dimas Arya Wicaksana, S.T.",
+      "nickName": "Dimas",
+      "father": "Bapak Bambang Wicaksana",
+      "mother": "Ibu Sri Rahayu",
+      "instagram": "https://instagram.com/dimas",
+      "photo": "/images/groom.jpg"
+    },
+    "bride": {
+      "fullName": "Sarah Amelia Ramadhani, S.Farm.",
+      "nickName": "Sarah",
+      "father": "Bapak Hendro Prasetyo",
+      "mother": "Ibu Nur Hasanah",
+      "instagram": "https://instagram.com/sarah",
+      "photo": "/images/bride.jpg"
+    }
+  },
+  "quotes": {
+    "source": "QS. Ar-Rum: 21",
+    "content": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri..."
+  },
+  "events": [
+    {
+      "id": "akad",
+      "name": "Akad Nikah",
+      "date": "Jumat, 25 Desember 2026",
+      "time": "08:00 - 10:00 WIB",
+      "venue": "Masjid Agung",
+      "address": "Jl. Protokol No. 12, Jakarta",
+      "googleMapsUrl": "https://maps.google.com/..."
+    }
+  ],
+  "gifts": [
+    { "type": "bank", "bankName": "BCA", "accountNumber": "1234567890", "accountHolder": "Putra Wira" }
+  ]
+}</code></pre>
+
+  <h3>5.3 Struktur Komponen Proyek</h3>
+  <pre><code>src/
+├── components/
+│   ├── layout/
+│   │   ├── MobileContainer.jsx      # Pembatas lebar max-w-md di tengah layar
+│   │   ├── FloatingNavbar.jsx       # Bottom floating pill navbar
+│   │   └── AudioPlayer.jsx          # Tombol kontrol musik mengambang
+│   ├── sections/
+│   │   ├── 01_OpeningSection.jsx    # Cover & trigger buka undangan
+│   │   ├── 02_CoupleSection.jsx     # Biodata mempelai
+│   │   ├── 03_QuotesSection.jsx     # Kutipan doa/ayat
+│   │   ├── 04_EventSection.jsx      # Jadwal acara & tombol maps
+│   │   ├── 05_CountdownSection.jsx  # Timer hitung mundur
+│   │   ├── 06_GallerySection.jsx    # Grid foto & lightbox modal
+│   │   ├── 07_RsvpSection.jsx       # Form konfirmasi kehadiran & ucapan
+│   │   ├── 08_GiftSection.jsx       # Rekening, QRIS & salin clipboard
+│   │   └── 09_ThanksSection.jsx     # Penutup & footer
+│   └── ui/                          # Toast, Button, Modal components
+├── hooks/
+│   ├── useGuestName.js              # Ekstraksi param ?name= dengan validasi
+│   └── useCountdown.js              # Timer real-time
+└── data/invitationData.json          # File konfigurasi data utama</code></pre>
+
+  <!-- SECTION 6 -->
+  <h2>6. Kebutuhan Non-Fungsional & Kualitas Produk</h2>
+  <ul>
+    <li><strong>Optimasi Performa Web:</strong> Semua aset gambar dikompresi ke format <code>WebP</code> atau <code>AVIF</code> dan menerapkan *lazy loading* untuk menjamin waktu muat layar pertama di bawah 1.5 detik pada koneksi seluler.</li>
+    <li><strong>Aksesibilitas & Standar Warna:</strong> Rasio kontras teks terhadap latar belakang minimal 4.5:1 (memenuhi standar WCAG AA).</li>
+    <li><strong>Cross-Platform Compatibility:</strong> Berfungsi sempurna di browser mobile (Safari iOS, Chrome Android) dan browser desktop (Chrome, Edge, Firefox, Safari macOS).</li>
+    <li><strong>User Feedback:</strong> Salin nomor rekening memberikan umpan balik visual instan berupa toast *"Nomor rekening berhasil disalin!"*.</li>
+  </ul>
+
+  <!-- SECTION 7 -->
+  <h2>7. Rencana Tahapan Rilis (Roadmap)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 15%;">Fase</th>
+        <th style="width: 35%;">Aktivitas Utama</th>
+        <th style="width: 50%;">Deliverables / Output</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Fase 1</strong></td>
+        <td>Penyusunan & Persetujuan PRD</td>
+        <td>Dokumen PRD terstandar dalam format <code>.md</code> dan <code>.pdf</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>Fase 2</strong></td>
+        <td>Boilerplate React & Layout Dasar</td>
+        <td>Setup Vite + Tailwind, komponen <code>MobileContainer</code>, dan <code>FloatingNavbar</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>Fase 3</strong></td>
+        <td>Logika URL Param & Audio</td>
+        <td>Implementasi hook <code>useGuestName</code>, mekanisme lock scroll, dan autoplay music.</td>
+      </tr>
+      <tr>
+        <td><strong>Fase 4</strong></td>
+        <td>Pembangunan 9 Seksi Standar</td>
+        <td>Komponen seksi 01 sampai 09 terhubung dengan skema <code>invitationData.json</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>Fase 5</strong></td>
+        <td>Fitur Interaktif & Form RSVP</td>
+        <td>Integrasi form ucapan, fitur salin clipboard, modal lightbox galeri foto.</td>
+      </tr>
+      <tr>
+        <td><strong>Fase 6</strong></td>
+        <td>Pengujian & Finalisasi Template</td>
+        <td>Uji coba lintas perangkat (iPhone, Android, Desktop PC) dan dokumentasi penggunaan.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>Standardisasi Undangan Digital — Product Requirements Document (PRD)</div>
+    <div>Halaman Dokumentasi Teknis</div>
+  </div>
+
+</body>
+</html>
+
