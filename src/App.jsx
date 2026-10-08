@@ -8,6 +8,7 @@ import { useGuestName } from './hooks/useGuestName';
 import MobileContainer from './components/layout/MobileContainer';
 import FloatingNavbar from './components/layout/FloatingNavbar';
 import AudioPlayer from './components/layout/AudioPlayer';
+import ScreenOrnaments from './components/layout/ScreenOrnaments';
 
 import OpeningSection from './components/sections/01_OpeningSection';
 import CoupleSection from './components/sections/02_CoupleSection';
@@ -89,6 +90,11 @@ export default function App() {
 
   return (
     <MobileContainer>
+      {/* Animated Corner & Side Ornaments */}
+      {invitationData.ornaments?.enabled && (
+        <ScreenOrnaments config={invitationData.ornaments} />
+      )}
+
       {/* Floating Audio Player Control (Available once unlocked) */}
       <AudioPlayer 
         audioUrl={invitationData.meta.audioUrl} 

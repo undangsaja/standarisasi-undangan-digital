@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" width="150" height="150" fill="none">
+  <defs>
+    <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#d97706" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#b45309" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+  <!-- Floral Branch 1 -->
+  <path d="M0,0 Q60,15 90,60 Q105,85 110,120 Q80,95 60,60 Q30,25 0,0 Z" fill="url(#goldGrad1)" opacity="0.75"/>
+  <!-- Leaf 1 -->
+  <path d="M30,12 Q55,8 65,22 Q50,30 30,12 Z" fill="#fcd34d" opacity="0.6"/>
+  <!-- Leaf 2 -->
+  <path d="M55,30 Q80,25 90,42 Q72,50 55,30 Z" fill="#fbbf24" opacity="0.7"/>
+  <!-- Leaf 3 -->
+  <path d="M75,55 Q102,52 110,72 Q92,78 75,55 Z" fill="#f59e0b" opacity="0.65"/>
+  <!-- Tiny bud dots -->
+  <circle cx="95" cy="40" r="3" fill="#fef08a" opacity="0.8"/>
+  <circle cx="115" cy="70" r="3.5" fill="#fef08a" opacity="0.8"/>
+  <circle cx="70" cy="20" r="2.5" fill="#fef08a" opacity="0.8"/>
+  <!-- Secondary soft stem -->
+  <path d="M0,0 Q25,45 45,85 Q40,65 20,35 Z" fill="#d97706" opacity="0.5"/>
+</svg>
+

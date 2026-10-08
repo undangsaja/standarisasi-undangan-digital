@@ -60,3 +60,61 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
+/* Animated Corner Ornaments */
+@keyframes ornament-sway-tl {
+  0%, 100% {
+    transform: rotate(0deg) translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: rotate(4deg) translate(3px, 3px) scale(1.03);
+  }
+}
+
+@keyframes ornament-sway-tr {
+  0%, 100% {
+    transform: rotate(0deg) translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: rotate(-4deg) translate(-3px, 3px) scale(1.03);
+  }
+}
+
+@keyframes ornament-float-bl {
+  0%, 100% {
+    transform: rotate(0deg) translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: rotate(-3deg) translate(3px, -4px) scale(1.02);
+  }
+}
+
+@keyframes ornament-float-br {
+  0%, 100% {
+    transform: rotate(0deg) translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: rotate(3deg) translate(-3px, -4px) scale(1.02);
+  }
+}
+
+.animate-ornament-tl {
+  transform-origin: top left;
+  animation: ornament-sway-tl 7s ease-in-out infinite;
+}
+
+.animate-ornament-tr {
+  transform-origin: top right;
+  animation: ornament-sway-tr 8s ease-in-out infinite;
+}
+
+.animate-ornament-bl {
+  transform-origin: bottom left;
+  animation: ornament-float-bl 7.5s ease-in-out infinite;
+}
+
+.animate-ornament-br {
+  transform-origin: bottom right;
+  animation: ornament-float-br 8.5s ease-in-out infinite;
+}
+
+
