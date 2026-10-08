@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, CheckCircle2, MessageSquare, Clock, HeartHandshake } from 'lucide-react';
+import { Send, CheckCircle2, MessageSquare, Clock } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function RsvpSection({ guestName }) {
@@ -91,9 +91,9 @@ export default function RsvpSection({ guestName }) {
   };
 
   return (
-    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-4 pb-24 text-stone-800 flex flex-col justify-between items-center text-center animate-fade-in select-none">
+    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-4 pb-24 text-stone-800 flex flex-col justify-between items-center text-center select-none">
       {/* Top Header */}
-      <div className="pt-2">
+      <div className="pt-2" data-aos="fade-down" data-aos-duration="600">
         <span className="text-[10.5px] font-semibold uppercase tracking-[0.25em] text-amber-700/80 mb-0.5 block">
           Konfirmasi & Doa
         </span>
@@ -103,7 +103,11 @@ export default function RsvpSection({ guestName }) {
       </div>
 
       {/* Main Container Card (Strictly fits 100vh) */}
-      <div className="w-full max-w-xs bg-white rounded-3xl p-4 shadow-sm border border-stone-200/90 flex flex-col my-auto">
+      <div 
+        className="w-full max-w-xs bg-white rounded-3xl p-4 shadow-sm border border-stone-200/90 flex flex-col my-auto"
+        data-aos="fade-up"
+        data-aos-duration="750"
+      >
         {/* Sub-tab switcher */}
         <div className="grid grid-cols-2 gap-1 w-full bg-stone-100 p-1 rounded-2xl mb-3">
           <button
@@ -228,7 +232,7 @@ export default function RsvpSection({ guestName }) {
       </div>
 
       {/* Bottom Hint */}
-      <p className="text-[10px] text-stone-400 italic">
+      <p className="text-[10px] text-stone-400 italic" data-aos="fade-up" data-aos-duration="600">
         {activeTab === 'form' ? 'Lihat doa tamu lainnya di tab Buku Ucapan' : 'Tekan tab Form untuk menulis ucapan baru'}
       </p>
     </div>

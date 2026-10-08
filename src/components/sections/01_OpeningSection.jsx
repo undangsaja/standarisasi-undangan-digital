@@ -18,7 +18,7 @@ export default function OpeningSection({ data, guestName, onOpenInvitation, isUn
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-900/60 backdrop-blur-[1px]" />
 
       {/* Top Header */}
-      <div className="relative z-10 pt-4 animate-fade-in">
+      <div className="relative z-10 pt-4" data-aos="fade-down" data-aos-duration="700">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/15 border border-amber-300/25 text-amber-200 text-[11px] tracking-widest uppercase font-semibold">
           <Sparkles size={12} className="text-amber-300" />
           The Wedding Celebration
@@ -26,7 +26,7 @@ export default function OpeningSection({ data, guestName, onOpenInvitation, isUn
       </div>
 
       {/* Main Couple Names */}
-      <div className="relative z-10 my-auto py-2 flex flex-col items-center">
+      <div className="relative z-10 my-auto py-2 flex flex-col items-center" data-aos="zoom-in" data-aos-duration="900">
         <p className="text-[11px] tracking-[0.25em] uppercase text-stone-300 mb-1.5 font-medium">
           We Are Getting Married
         </p>
@@ -40,7 +40,7 @@ export default function OpeningSection({ data, guestName, onOpenInvitation, isUn
       </div>
 
       {/* Personalized Guest Badge & Open Button */}
-      <div className="relative z-10 w-full max-w-xs flex flex-col items-center gap-2.5">
+      <div className="relative z-10 w-full max-w-xs flex flex-col items-center gap-2.5" data-aos="fade-up" data-aos-duration="800">
         {/* Recipient Glass Card */}
         <div className="w-full rounded-2xl p-3 bg-white/10 backdrop-blur-md border border-white/20 shadow-xl text-center">
           <p className="text-[10.5px] uppercase tracking-wider text-stone-300 font-medium mb-0.5">

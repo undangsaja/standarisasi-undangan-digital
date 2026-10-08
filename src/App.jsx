@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import invitationData from './data/invitationData.json';
 import { useGuestName } from './hooks/useGuestName';
 
@@ -21,6 +24,26 @@ export default function App() {
   const [activePage, setActivePage] = useState('opening');
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [autoPlayRequested, setAutoPlayRequested] = useState(false);
+
+  // Initialize AOS once on mount
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+      easing: 'ease-out-cubic',
+      mirror: true,
+      offset: 0,
+    });
+  }, []);
+
+  // Trigger AOS re-animation every time activePage changes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      AOS.refreshHard();
+    }, 60);
+
+    return () => clearTimeout(timer);
+  }, [activePage]);
 
   const handleOpenInvitation = () => {
     setIsUnlocked(true);
@@ -73,7 +96,10 @@ export default function App() {
       />
 
       {/* Screen Viewport: Strictly 100% height, zero window scroll */}
-      <div className="w-full h-full max-h-[100dvh] overflow-hidden relative bg-stone-50">
+      <div 
+        key={activePage}
+        className="w-full h-full max-h-[100dvh] overflow-hidden relative bg-stone-50"
+      >
         {renderActivePage()}
       </div>
 

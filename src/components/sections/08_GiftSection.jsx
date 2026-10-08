@@ -20,9 +20,9 @@ export default function GiftSection({ data }) {
   const physicalGift = gifts.find(g => g.type === 'physical');
 
   return (
-    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-4 pb-24 text-stone-800 flex flex-col justify-between items-center text-center animate-fade-in select-none">
+    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-4 pb-24 text-stone-800 flex flex-col justify-between items-center text-center select-none">
       {/* Top Header */}
-      <div className="pt-2">
+      <div className="pt-2" data-aos="fade-down" data-aos-duration="600">
         <span className="text-[10.5px] font-semibold uppercase tracking-[0.25em] text-amber-700/80 mb-0.5 block">
           Tanda Kasih
         </span>
@@ -32,7 +32,11 @@ export default function GiftSection({ data }) {
       </div>
 
       {/* Main Container Card (Strictly fits 100vh) */}
-      <div className="w-full max-w-xs bg-white rounded-3xl p-4 shadow-sm border border-stone-200/90 flex flex-col items-center my-auto">
+      <div 
+        className="w-full max-w-xs bg-white rounded-3xl p-4 shadow-sm border border-stone-200/90 flex flex-col items-center my-auto"
+        data-aos="zoom-in"
+        data-aos-duration="750"
+      >
         {/* Method Switcher Tabs */}
         <div className="grid grid-cols-4 gap-1 w-full bg-stone-100 p-1 rounded-2xl mb-3">
           {[
@@ -158,7 +162,7 @@ export default function GiftSection({ data }) {
       </div>
 
       {/* Bottom Hint */}
-      <p className="text-[10px] text-stone-400 italic">
+      <p className="text-[10px] text-stone-400 italic" data-aos="fade-up" data-aos-duration="600">
         Pilih tab di atas untuk melihat rekening BCA, Mandiri, QRIS atau Kado Fisik
       </p>
     </div>

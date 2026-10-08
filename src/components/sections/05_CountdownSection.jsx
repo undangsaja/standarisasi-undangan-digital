@@ -13,15 +13,23 @@ export default function CountdownSection({ data }) {
   ];
 
   return (
-    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-5 pb-24 bg-slate-900 text-white flex flex-col items-center justify-center text-center relative animate-fade-in select-none">
+    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-5 pb-24 bg-slate-900 text-white flex flex-col items-center justify-center text-center relative select-none">
       {/* Subtle background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(245,158,11,0.18)_0%,_transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 w-full flex flex-col items-center my-auto">
-        <span className="text-[10.5px] font-semibold uppercase tracking-[0.25em] text-amber-300 mb-1.5">
+        <span 
+          className="text-[10.5px] font-semibold uppercase tracking-[0.25em] text-amber-300 mb-1.5"
+          data-aos="fade-down"
+          data-aos-duration="600"
+        >
           Save The Date
         </span>
-        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-6">
+        <h2 
+          className="font-serif text-2xl sm:text-3xl font-bold text-white mb-6"
+          data-aos="fade-down"
+          data-aos-duration="700"
+        >
           {title}
         </h2>
 
@@ -30,7 +38,11 @@ export default function CountdownSection({ data }) {
             Alhamdulillah, Acara Telah Berlangsung
           </div>
         ) : (
-          <div className="grid grid-cols-4 gap-2 w-full max-w-xs mb-6">
+          <div 
+            className="grid grid-cols-4 gap-2 w-full max-w-xs mb-6"
+            data-aos="zoom-in"
+            data-aos-duration="800"
+          >
             {timeBoxes.map((box, i) => (
               <div 
                 key={i}
@@ -47,9 +59,13 @@ export default function CountdownSection({ data }) {
           </div>
         )}
 
-        <div className="w-14 h-px bg-stone-700 mb-3" />
+        <div className="w-14 h-px bg-stone-700 mb-3" data-aos="zoom-in" data-aos-duration="500" />
 
-        <p className="text-[11.5px] text-stone-300 max-w-xs font-light leading-relaxed">
+        <p 
+          className="text-[11.5px] text-stone-300 max-w-xs font-light leading-relaxed"
+          data-aos="fade-up"
+          data-aos-duration="700"
+        >
           Kami menantikan kehadiran dan doa restu Anda di hari penuh keberkahan ini.
         </p>
       </div>
