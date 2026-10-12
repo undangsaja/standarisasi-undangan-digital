@@ -5,7 +5,7 @@ export default function QuotesSection({ data }) {
   const { source, content } = data.quotes;
 
   return (
-    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-6 pb-24 bg-neutral-950 text-neutral-100 flex flex-col items-center justify-center text-center relative select-none">
+    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-6 pb-24 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 text-neutral-100 flex flex-col items-center justify-center text-center relative select-none">
       {/* Subtle monochrome background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08)_0%,_transparent_70%)] pointer-events-none" />
 

@@ -3,16 +3,113 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --theme-surface: 255 248 235;
+    --theme-50: 246 229 195;
+    --theme-100: 236 212 168;
+    --theme-200: 212 175 122;
+    --theme-300: 184 139 82;
+    --theme-400: 148 96 55;
+    --theme-500: 158 42 43;
+    --theme-600: 107 58 30;
+    --theme-700: 78 39 18;
+    --theme-800: 166 36 36;
+    --theme-900: 74 37 17;
+    --theme-950: 139 30 30;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
 
   body {
-    background-color: #0a0a0a;
-    color: #171717;
+    background-color: rgb(var(--theme-900));
+    color: rgb(var(--theme-900));
     overflow-x: hidden;
   }
+}
+
+/* Theme surface & dynamic neutral overrides (instant HMR without server restart) */
+.bg-surface { background-color: rgb(var(--theme-surface)) !important; }
+.bg-surface\/95 { background-color: rgb(var(--theme-surface) / 0.95) !important; }
+.text-surface { color: rgb(var(--theme-surface)) !important; }
+.border-surface { border-color: rgb(var(--theme-surface)) !important; }
+
+.bg-neutral-50 { background-color: rgb(var(--theme-50)) !important; }
+.bg-neutral-100 { background-color: rgb(var(--theme-100)) !important; }
+.bg-neutral-200 { background-color: rgb(var(--theme-200)) !important; }
+.bg-neutral-300 { background-color: rgb(var(--theme-300)) !important; }
+.bg-neutral-700 { background-color: rgb(var(--theme-700)) !important; }
+.bg-neutral-800 { background-color: rgb(var(--theme-800)) !important; }
+.bg-neutral-900 { background-color: rgb(var(--theme-900)) !important; }
+.bg-neutral-900\/55 { background-color: rgb(var(--theme-900) / 0.55) !important; }
+.bg-neutral-900\/70 { background-color: rgb(var(--theme-900) / 0.70) !important; }
+.bg-neutral-950 { background-color: rgb(var(--theme-950)) !important; }
+.bg-neutral-950\/75 { background-color: rgb(var(--theme-950) / 0.75) !important; }
+.bg-neutral-950\/85 { background-color: rgb(var(--theme-950) / 0.85) !important; }
+.bg-neutral-950\/95 { background-color: rgb(var(--theme-950) / 0.95) !important; }
+
+.hover\:bg-neutral-100:hover { background-color: rgb(var(--theme-100)) !important; }
+.hover\:bg-neutral-200:hover { background-color: rgb(var(--theme-200)) !important; }
+.hover\:bg-neutral-800:hover { background-color: rgb(var(--theme-800)) !important; }
+.hover\:bg-neutral-950:hover { background-color: rgb(var(--theme-950)) !important; }
+
+.text-neutral-100 { color: rgb(var(--theme-100)) !important; }
+.text-neutral-200 { color: rgb(var(--theme-200)) !important; }
+.text-neutral-300 { color: rgb(var(--theme-300)) !important; }
+.text-neutral-400 { color: rgb(var(--theme-400)) !important; }
+.text-neutral-500 { color: rgb(var(--theme-500)) !important; }
+.text-neutral-600 { color: rgb(var(--theme-600)) !important; }
+.text-neutral-700 { color: rgb(var(--theme-700)) !important; }
+.text-neutral-800 { color: rgb(var(--theme-800)) !important; }
+.text-neutral-900 { color: rgb(var(--theme-900)) !important; }
+.text-neutral-950 { color: rgb(var(--theme-950)) !important; }
+
+.border-neutral-100 { border-color: rgb(var(--theme-100)) !important; }
+.border-neutral-200 { border-color: rgb(var(--theme-200)) !important; }
+.border-neutral-200\/15 { border-color: rgb(var(--theme-200) / 0.15) !important; }
+.border-neutral-200\/30 { border-color: rgb(var(--theme-200) / 0.30) !important; }
+.border-neutral-300 { border-color: rgb(var(--theme-300)) !important; }
+.border-neutral-300\/25 { border-color: rgb(var(--theme-300) / 0.25) !important; }
+.border-neutral-300\/40 { border-color: rgb(var(--theme-300) / 0.40) !important; }
+.border-neutral-950 { border-color: rgb(var(--theme-950)) !important; }
+
+.from-neutral-900 {
+  --tw-gradient-from: rgb(var(--theme-900)) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(var(--theme-900) / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.from-neutral-950 {
+  --tw-gradient-from: rgb(var(--theme-950)) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(var(--theme-950) / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.from-neutral-950\/90 {
+  --tw-gradient-from: rgb(var(--theme-950) / 0.9) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(var(--theme-950) / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.via-neutral-950 {
+  --tw-gradient-to: rgb(var(--theme-950) / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--theme-950)) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+.via-neutral-900 {
+  --tw-gradient-to: rgb(var(--theme-900) / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--theme-900)) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+.via-neutral-950\/50 {
+  --tw-gradient-to: rgb(var(--theme-950) / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--theme-950) / 0.5) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+.to-neutral-900 {
+  --tw-gradient-to: rgb(var(--theme-900)) var(--tw-gradient-to-position) !important;
+}
+.to-neutral-950 {
+  --tw-gradient-to: rgb(var(--theme-950)) var(--tw-gradient-to-position) !important;
+}
+.to-neutral-900\/35 {
+  --tw-gradient-to: rgb(var(--theme-900) / 0.35) var(--tw-gradient-to-position) !important;
 }
 
 /* Custom Scrollbar for container */
@@ -99,6 +196,24 @@
   }
 }
 
+@keyframes ornament-sub-sway-tl {
+  0%, 100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(3.5deg);
+  }
+}
+
+@keyframes ornament-sub-sway-tr {
+  0%, 100% {
+    transform: rotate(1.5deg);
+  }
+  50% {
+    transform: rotate(-3.5deg);
+  }
+}
+
 .animate-ornament-tl {
   transform-origin: top left;
   will-change: transform;
@@ -111,8 +226,62 @@
   animation: ornament-sway-tr 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
+.animate-ornament-sub-tl {
+  transform-origin: 52% 10%;
+  will-change: transform;
+  animation: ornament-sub-sway-tl 4.8s ease-in-out infinite;
+}
+
+.animate-ornament-sub-tr {
+  transform-origin: 48% 10%;
+  will-change: transform;
+  animation: ornament-sub-sway-tr 5.2s ease-in-out infinite;
+}
+
 .animate-ornament-bl {
   transform-origin: center;
   will-change: transform;
   animation: ornament-float-bl 6s ease-in-out infinite;
+}
+
+@keyframes arch-breathe {
+  0%, 100% {
+    transform: translate3d(0px, 0px, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0px, -4px, 0) scale(1.02);
+  }
+}
+
+@keyframes bird-hover-left {
+  0%, 100% {
+    transform: translate3d(0px, 0px, 0) rotate(-4deg) scale(1);
+  }
+  50% {
+    transform: translate3d(5px, -7px, 0) rotate(5deg) scale(1.06);
+  }
+}
+
+@keyframes bird-hover-right {
+  0%, 100% {
+    transform: scaleX(-1) translate3d(0px, 0px, 0) rotate(-4deg) scale(1);
+  }
+  50% {
+    transform: scaleX(-1) translate3d(5px, -7px, 0) rotate(5deg) scale(1.06);
+  }
+}
+
+.animate-arch-center {
+  will-change: transform;
+  animation: arch-breathe 7.5s ease-in-out infinite;
+}
+
+.animate-bird-left {
+  will-change: transform;
+  animation: bird-hover-left 4.2s ease-in-out infinite;
+}
+
+.animate-bird-right {
+  will-change: transform;
+  animation: bird-hover-right 4.6s ease-in-out infinite;
 }

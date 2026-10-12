@@ -1,0 +1,65 @@
+{
+  "jawa": {
+    "id": "jawa",
+    "name": "Jawa Klasik (Merah, Coklat & Cream)",
+    "tagline": "Pawiwahan Agung",
+    "photoFilter": "grayscale-0",
+    "ornaments": {
+      "enabled": false,
+      "coverImage": null,
+      "openingHeaderImage": null,
+      "topLeft": null,
+      "topRight": null,
+      "topLeftSub": null,
+      "topRightSub": null,
+      "coupleCenter": null,
+      "coupleBird": null
+    },
+    "colors": {
+      "surface": "255 248 235",
+      "50": "246 229 195",
+      "100": "236 212 168",
+      "200": "212 175 122",
+      "300": "184 139 82",
+      "400": "148 96 55",
+      "500": "158 42 43",
+      "600": "107 58 30",
+      "700": "78 39 18",
+      "800": "166 36 36",
+      "900": "74 37 17",
+      "950": "139 30 30"
+    }
+  },
+  "monochrome": {
+    "id": "monochrome",
+    "name": "Monochrome Elegance",
+    "tagline": "The Wedding Celebration",
+    "photoFilter": "grayscale-[15%]",
+    "ornaments": {
+      "enabled": true,
+      "coverImage": "/ornaments/bg-opening.png",
+      "openingHeaderImage": "/ornaments/opening-atas.png",
+      "topLeft": "/ornaments/atas-kiri.png",
+      "topRight": "/ornaments/atas-kanan.png",
+      "topLeftSub": "/ornaments/atas2-kiri.png",
+      "topRightSub": "/ornaments/atas2-kanan.png",
+      "coupleCenter": "/ornaments/center-mempelai.png",
+      "coupleBird": "/ornaments/bird-mempelai.png"
+    },
+    "colors": {
+      "surface": "255 255 255",
+      "50": "250 250 250",
+      "100": "245 245 245",
+      "200": "229 229 229",
+      "300": "212 212 212",
+      "400": "163 163 163",
+      "500": "115 115 115",
+      "600": "82 82 82",
+      "700": "64 64 64",
+      "800": "38 38 38",
+      "900": "23 23 23",
+      "950": "10 10 10"
+    }
+  }
+}
+

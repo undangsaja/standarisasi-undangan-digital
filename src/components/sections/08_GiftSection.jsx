@@ -33,7 +33,7 @@ export default function GiftSection({ data }) {
 
       {/* Main Container Card (Strictly fits 100vh) */}
       <div 
-        className="w-full max-w-xs bg-white rounded-3xl p-4 shadow-sm border border-neutral-200 flex flex-col items-center my-auto"
+        className="w-full max-w-xs bg-surface rounded-3xl p-4 shadow-sm border border-neutral-200 flex flex-col items-center my-auto"
         data-aos="zoom-in"
         data-aos-duration="750"
       >

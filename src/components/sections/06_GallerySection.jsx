@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 
-export default function GallerySection({ data }) {
+export default function GallerySection({ data, themeConfig }) {
   const { gallery } = data;
+  const photoFilter = themeConfig?.photoFilter || 'grayscale-0';
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
@@ -34,11 +35,11 @@ export default function GallerySection({ data }) {
         data-aos="zoom-in"
         data-aos-duration="750"
       >
-        <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-md border-2 border-white bg-neutral-200 group">
+        <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-md border-2 border-surface bg-neutral-200 group">
           <img
             src={currentItem.url}
             alt={currentItem.caption}
-            className="w-full h-full object-cover transition-all duration-300 grayscale-[15%]"
+            className={`w-full h-full object-cover transition-all duration-300 ${photoFilter}`}
           />
 
           {/* Left Arrow Button */}

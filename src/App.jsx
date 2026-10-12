@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import invitationData from './data/invitationData.json';
+import themesRegistry from './data/themes.json';
 import { useGuestName } from './hooks/useGuestName';
 
 import MobileContainer from './components/layout/MobileContainer';
@@ -26,6 +27,48 @@ export default function App() {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [autoPlayRequested, setAutoPlayRequested] = useState(false);
 
+  // Determine initial template from URL (?theme=jawa / ?theme=monokrom / ?theme=monochrome) or invitationData.json
+  const resolveThemeKey = (rawKey) => {
+    if (!rawKey) return null;
+    const normalized = rawKey.toLowerCase().trim();
+    const aliases = {
+      monokrom: 'monochrome',
+      monochrome: 'monochrome',
+      hitam: 'monochrome',
+      jawa: 'jawa',
+      javanese: 'jawa',
+    };
+    const mapped = aliases[normalized] || normalized;
+    return themesRegistry[mapped] ? mapped : null;
+  };
+
+  const [activeThemeKey] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlTheme = resolveThemeKey(params.get('theme'));
+      if (urlTheme) {
+        return urlTheme;
+      }
+    }
+    return resolveThemeKey(invitationData.meta.theme) || 'jawa';
+  });
+
+  const currentTheme = themesRegistry[activeThemeKey] || themesRegistry.jawa;
+
+  // Apply active template CSS variables dynamically to :root
+  useEffect(() => {
+    const root = document.documentElement;
+    const colors = currentTheme.colors;
+    if (colors) {
+      if (colors.surface) root.style.setProperty('--theme-surface', colors.surface);
+      ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'].forEach((shade) => {
+        if (colors[shade]) {
+          root.style.setProperty(`--theme-${shade}`, colors[shade]);
+        }
+      });
+    }
+  }, [currentTheme]);
+
   // Initialize AOS once on mount
   useEffect(() => {
     AOS.init({
@@ -37,14 +80,14 @@ export default function App() {
     });
   }, []);
 
-  // Trigger AOS re-animation every time activePage changes
+  // Trigger AOS re-animation every time activePage or template changes
   useEffect(() => {
     const timer = setTimeout(() => {
       AOS.refreshHard();
     }, 60);
 
     return () => clearTimeout(timer);
-  }, [activePage]);
+  }, [activePage, activeThemeKey]);
 
   const handleOpenInvitation = () => {
     setIsUnlocked(true);
@@ -62,13 +105,14 @@ export default function App() {
         return (
           <OpeningSection
             data={invitationData}
+            themeConfig={currentTheme}
             guestName={guestName}
             onOpenInvitation={handleOpenInvitation}
             isUnlocked={isUnlocked}
           />
         );
       case 'couple':
-        return <CoupleSection data={invitationData} />;
+        return <CoupleSection data={invitationData} themeConfig={currentTheme} />;
       case 'quotes':
         return <QuotesSection data={invitationData} />;
       case 'event':
@@ -76,7 +120,7 @@ export default function App() {
       case 'countdown':
         return <CountdownSection data={invitationData} />;
       case 'gallery':
-        return <GallerySection data={invitationData} />;
+        return <GallerySection data={invitationData} themeConfig={currentTheme} />;
       case 'rsvp':
         return <RsvpSection guestName={guestName} />;
       case 'gift':
@@ -84,15 +128,17 @@ export default function App() {
       case 'thanks':
         return <ThanksSection data={invitationData} />;
       default:
-        return <CoupleSection data={invitationData} />;
+        return <CoupleSection data={invitationData} themeConfig={currentTheme} />;
     }
   };
 
+  const ornamentsEnabled = currentTheme?.ornaments?.enabled ?? false;
+
   return (
     <MobileContainer>
-      {/* Ornamen Atas Kiri & Atas Kanan (Aktif di semua halaman KECUALI Opening) */}
-      {invitationData.ornaments?.enabled && activePage !== 'opening' && (
-        <ScreenOrnaments config={invitationData.ornaments} />
+      {/* Ornamen Sudut Atas (Hanya aktif jika template mengaktifkan ornamen dan bukan di halaman Opening) */}
+      {ornamentsEnabled && activePage !== 'opening' && (
+        <ScreenOrnaments config={currentTheme.ornaments} />
       )}
 
       {/* Floating Audio Player Control (Available once unlocked) */}
@@ -103,7 +149,7 @@ export default function App() {
 
       {/* Screen Viewport: Strictly 100% height, zero window scroll */}
       <div 
-        key={activePage}
+        key={`${activePage}-${activeThemeKey}`}
         className="w-full h-full max-h-[100dvh] overflow-hidden relative bg-neutral-50"
       >
         {renderActivePage()}

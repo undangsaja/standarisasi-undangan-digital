@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "The Wedding of Dimas & Sarah",
-    "theme": "monochrome-elegance",
+    "theme": "jawa",
     "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/16/audio_c97feb3f49.mp3?filename=romantic-wedding-113098.mp3",
     "coverImage": "/ornaments/bg-opening.png",
     "openingHeaderImage": "/ornaments/opening-atas.png"
@@ -9,7 +9,11 @@
   "ornaments": {
     "enabled": true,
     "topLeft": "/ornaments/atas-kiri.png",
-    "topRight": "/ornaments/atas-kanan.png"
+    "topRight": "/ornaments/atas-kanan.png",
+    "topLeftSub": "/ornaments/atas2-kiri.png",
+    "topRightSub": "/ornaments/atas2-kanan.png",
+    "coupleCenter": "/ornaments/center-mempelai.png",
+    "coupleBird": "/ornaments/bird-mempelai.png"
   },
   "couple": {
     "greeting": "Assalamu'alaikum Warahmatullahi Wabarakatuh",
