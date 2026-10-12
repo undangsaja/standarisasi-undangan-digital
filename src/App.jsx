@@ -90,8 +90,8 @@ export default function App() {
 
   return (
     <MobileContainer>
-      {/* Animated Corner & Side Ornaments */}
-      {invitationData.ornaments?.enabled && (
+      {/* Ornamen Atas Kiri & Atas Kanan (Aktif di semua halaman KECUALI Opening) */}
+      {invitationData.ornaments?.enabled && activePage !== 'opening' && (
         <ScreenOrnaments config={invitationData.ornaments} />
       )}
 
@@ -104,7 +104,7 @@ export default function App() {
       {/* Screen Viewport: Strictly 100% height, zero window scroll */}
       <div 
         key={activePage}
-        className="w-full h-full max-h-[100dvh] overflow-hidden relative bg-stone-50"
+        className="w-full h-full max-h-[100dvh] overflow-hidden relative bg-neutral-50"
       >
         {renderActivePage()}
       </div>

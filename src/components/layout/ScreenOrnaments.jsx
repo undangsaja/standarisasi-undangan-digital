@@ -2,58 +2,37 @@ import React from 'react';
 
 /**
  * ScreenOrnaments:
- * Komponen ornamen dekoratif samping dan sudut layar dengan animasi gerak lembut.
- * Menggunakan pointer-events-none agar tidak menghalangi tombol atau form.
+ * Menampilkan ornamen sudut atas-kiri.png dan atas-kanan.png
+ * dengan animasi bergoyang lembut (smooth breeze sway) di semua halaman kecuali Opening.
  */
 export default function ScreenOrnaments({ config }) {
-  // Gunakan gambar dari config (jika ada) atau fallback ke SVG default di /ornaments/
-  const topLeftImg = config?.topLeft || '/ornaments/ornament-top-left.svg';
-  const topRightImg = config?.topRight || '/ornaments/ornament-top-right.svg';
-  const bottomLeftImg = config?.bottomLeft || '/ornaments/ornament-bottom-left.svg';
-  const bottomRightImg = config?.bottomRight || '/ornaments/ornament-bottom-right.svg';
+  const topLeftImg = config?.topLeft || '/ornaments/atas-kiri.png';
+  const topRightImg = config?.topRight || '/ornaments/atas-kanan.png';
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden select-none" aria-hidden="true">
-      {/* 1. Pojok Kiri Atas (Top-Left) - Bergerak lembut bergoyang */}
-      <div className="absolute top-0 left-0 w-28 h-28 sm:w-36 sm:h-36 animate-ornament-tl opacity-85 transition-opacity">
+    <div 
+      className="absolute inset-0 pointer-events-none z-20 overflow-hidden select-none" 
+      aria-hidden="true"
+    >
+      {/* 1. Ornamen Pojok Kiri Atas (atas-kiri.png) */}
+      <div className="absolute -top-2 -left-2 w-36 h-36 sm:w-44 sm:h-44 animate-ornament-tl">
         <img 
           src={topLeftImg} 
           alt="Ornamen Kiri Atas" 
-          className="w-full h-full object-contain filter drop-shadow-sm" 
+          className="w-full h-full object-contain drop-shadow-md transition-opacity duration-500" 
           loading="eager"
         />
       </div>
 
-      {/* 2. Pojok Kanan Atas (Top-Right) - Bergerak lembut bergoyang */}
-      <div className="absolute top-0 right-0 w-28 h-28 sm:w-36 sm:h-36 animate-ornament-tr opacity-85 transition-opacity">
+      {/* 2. Ornamen Pojok Kanan Atas (atas-kanan.png) */}
+      <div className="absolute -top-2 -right-2 w-36 h-36 sm:w-44 sm:h-44 animate-ornament-tr">
         <img 
           src={topRightImg} 
           alt="Ornamen Kanan Atas" 
-          className="w-full h-full object-contain filter drop-shadow-sm" 
-          loading="eager"
-        />
-      </div>
-
-      {/* 3. Pojok Kiri Bawah (Bottom-Left) - Melayang perlahan naik-turun */}
-      <div className="absolute bottom-0 left-0 w-28 h-28 sm:w-36 sm:h-36 animate-ornament-bl opacity-80 transition-opacity">
-        <img 
-          src={bottomLeftImg} 
-          alt="Ornamen Kiri Bawah" 
-          className="w-full h-full object-contain filter drop-shadow-sm" 
-          loading="eager"
-        />
-      </div>
-
-      {/* 4. Pojok Kanan Bawah (Bottom-Right) - Melayang perlahan naik-turun */}
-      <div className="absolute bottom-0 right-0 w-28 h-28 sm:w-36 sm:h-36 animate-ornament-br opacity-80 transition-opacity">
-        <img 
-          src={bottomRightImg} 
-          alt="Ornamen Kanan Bawah" 
-          className="w-full h-full object-contain filter drop-shadow-sm" 
+          className="w-full h-full object-contain drop-shadow-md transition-opacity duration-500" 
           loading="eager"
         />
       </div>
     </div>
   );
 }
-

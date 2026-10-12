@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Music, Disc3, VolumeX } from 'lucide-react';
+import { Disc3, VolumeX } from 'lucide-react';
 
 export default function AudioPlayer({ audioUrl, autoPlayRequested }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -32,25 +32,24 @@ export default function AudioPlayer({ audioUrl, autoPlayRequested }) {
   if (!autoPlayRequested) return null;
 
   return (
-    <div className="fixed top-5 right-5 z-40 pointer-events-auto">
+    <div className="absolute bottom-20 right-4 z-40 pointer-events-auto">
       <audio ref={audioRef} src={audioUrl} loop preload="auto" />
       
       <button
         onClick={togglePlay}
         aria-label={isPlaying ? "Jeda musik" : "Putar musik"}
-        className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg border border-amber-300/40 ${
+        className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg border border-white/25 ${
           isPlaying 
-            ? 'bg-slate-900/85 text-amber-300 shadow-amber-500/20' 
-            : 'bg-slate-800/85 text-slate-400'
+            ? 'bg-neutral-950/90 text-white shadow-black/40' 
+            : 'bg-neutral-800/85 text-neutral-400'
         } backdrop-blur-md`}
       >
         {isPlaying ? (
-          <Disc3 size={22} className="animate-spin-slow text-amber-300" />
+          <Disc3 size={20} className="animate-spin-slow text-white" />
         ) : (
-          <VolumeX size={18} className="text-slate-400" />
+          <VolumeX size={16} className="text-neutral-400" />
         )}
       </button>
     </div>
   );
 }
-

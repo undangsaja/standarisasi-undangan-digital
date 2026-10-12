@@ -9,8 +9,8 @@
   }
 
   body {
-    background-color: #0b1120;
-    color: #1e293b;
+    background-color: #0a0a0a;
+    color: #171717;
     overflow-x: hidden;
   }
 }
@@ -23,33 +23,26 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #d4d4d4;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #a3a3a3;
 }
 
 /* Glassmorphism helpers */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .glass-dark {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(15, 15, 15, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.glass-gold {
-  background: rgba(253, 251, 247, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(203, 176, 126, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 /* Elegant Text Shadow */
@@ -60,61 +53,66 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-/* Animated Corner Ornaments */
+/* Animated Corner Ornaments (Ultra Smooth Breeze Effect) */
 @keyframes ornament-sway-tl {
-  0%, 100% {
-    transform: rotate(0deg) translate(0px, 0px) scale(1);
+  0% {
+    transform: translate3d(0px, 0px, 0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate3d(3px, 2px, 0) rotate(2.2deg) scale(1.02);
   }
   50% {
-    transform: rotate(4deg) translate(3px, 3px) scale(1.03);
+    transform: translate3d(5px, 4px, 0) rotate(4deg) scale(1.04);
+  }
+  75% {
+    transform: translate3d(2px, 3px, 0) rotate(1.8deg) scale(1.02);
+  }
+  100% {
+    transform: translate3d(0px, 0px, 0) rotate(0deg) scale(1);
   }
 }
 
 @keyframes ornament-sway-tr {
-  0%, 100% {
-    transform: rotate(0deg) translate(0px, 0px) scale(1);
+  0% {
+    transform: translate3d(0px, 0px, 0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate3d(-3px, 2px, 0) rotate(-2.2deg) scale(1.02);
   }
   50% {
-    transform: rotate(-4deg) translate(-3px, 3px) scale(1.03);
+    transform: translate3d(-5px, 4px, 0) rotate(-4deg) scale(1.04);
+  }
+  75% {
+    transform: translate3d(-2px, 3px, 0) rotate(-1.8deg) scale(1.02);
+  }
+  100% {
+    transform: translate3d(0px, 0px, 0) rotate(0deg) scale(1);
   }
 }
 
 @keyframes ornament-float-bl {
   0%, 100% {
-    transform: rotate(0deg) translate(0px, 0px) scale(1);
+    transform: translate3d(0px, 0px, 0) rotate(0deg) scale(1);
   }
   50% {
-    transform: rotate(-3deg) translate(3px, -4px) scale(1.02);
-  }
-}
-
-@keyframes ornament-float-br {
-  0%, 100% {
-    transform: rotate(0deg) translate(0px, 0px) scale(1);
-  }
-  50% {
-    transform: rotate(3deg) translate(-3px, -4px) scale(1.02);
+    transform: translate3d(0px, -5px, 0) rotate(-2deg) scale(1.02);
   }
 }
 
 .animate-ornament-tl {
   transform-origin: top left;
-  animation: ornament-sway-tl 7s ease-in-out infinite;
+  will-change: transform;
+  animation: ornament-sway-tl 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
 .animate-ornament-tr {
   transform-origin: top right;
-  animation: ornament-sway-tr 8s ease-in-out infinite;
+  will-change: transform;
+  animation: ornament-sway-tr 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
 .animate-ornament-bl {
-  transform-origin: bottom left;
-  animation: ornament-float-bl 7.5s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform;
+  animation: ornament-float-bl 6s ease-in-out infinite;
 }
-
-.animate-ornament-br {
-  transform-origin: bottom right;
-  animation: ornament-float-br 8.5s ease-in-out infinite;
-}
-
-

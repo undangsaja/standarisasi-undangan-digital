@@ -17,13 +17,13 @@ export default function GallerySection({ data }) {
   const currentItem = gallery[currentIndex];
 
   return (
-    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-4 pb-24 text-stone-800 flex flex-col justify-between items-center text-center select-none">
+    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-4 pb-24 bg-neutral-50 text-neutral-800 flex flex-col justify-between items-center text-center select-none">
       {/* Top Header */}
       <div className="pt-2" data-aos="fade-down" data-aos-duration="600">
-        <span className="text-[10.5px] font-semibold uppercase tracking-[0.25em] text-amber-700/80 mb-0.5 block">
+        <span className="text-[10.5px] font-semibold uppercase tracking-[0.25em] text-neutral-500 mb-0.5 block">
           Momen Kebahagiaan
         </span>
-        <h2 className="font-serif text-2xl font-bold text-stone-900">
+        <h2 className="font-serif text-2xl font-bold text-neutral-950">
           Galeri Foto
         </h2>
       </div>
@@ -34,18 +34,18 @@ export default function GallerySection({ data }) {
         data-aos="zoom-in"
         data-aos-duration="750"
       >
-        <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-md border-2 border-white bg-stone-200 group">
+        <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-md border-2 border-white bg-neutral-200 group">
           <img
             src={currentItem.url}
             alt={currentItem.caption}
-            className="w-full h-full object-cover transition-all duration-300"
+            className="w-full h-full object-cover transition-all duration-300 grayscale-[15%]"
           />
 
           {/* Left Arrow Button */}
           <button
             onClick={prevPhoto}
             aria-label="Foto Sebelumnya"
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition-all shadow-md active:scale-90"
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-neutral-950/75 hover:bg-neutral-950 text-white flex items-center justify-center transition-all shadow-md active:scale-90"
           >
             <ChevronLeft size={18} />
           </button>
@@ -54,7 +54,7 @@ export default function GallerySection({ data }) {
           <button
             onClick={nextPhoto}
             aria-label="Foto Selanjutnya"
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition-all shadow-md active:scale-90"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-neutral-950/75 hover:bg-neutral-950 text-white flex items-center justify-center transition-all shadow-md active:scale-90"
           >
             <ChevronRight size={18} />
           </button>
@@ -63,7 +63,7 @@ export default function GallerySection({ data }) {
           <button
             onClick={() => setIsLightboxOpen(true)}
             aria-label="Perbesar Foto"
-            className="absolute bottom-2.5 right-2.5 p-1.5 rounded-full bg-slate-900/80 text-amber-300 hover:bg-slate-900 shadow-md backdrop-blur-sm"
+            className="absolute bottom-2.5 right-2.5 p-1.5 rounded-full bg-neutral-950/85 text-white hover:bg-neutral-950 shadow-md backdrop-blur-sm"
           >
             <ZoomIn size={15} />
           </button>
@@ -71,10 +71,10 @@ export default function GallerySection({ data }) {
 
         {/* Caption & Counter */}
         <div className="mt-2.5 flex flex-col items-center">
-          <p className="text-xs font-semibold text-stone-800">
+          <p className="text-xs font-semibold text-neutral-900">
             {currentItem.caption}
           </p>
-          <span className="text-[10px] text-stone-400 mt-0.5">
+          <span className="text-[10px] text-neutral-400 mt-0.5">
             {currentIndex + 1} dari {gallery.length}
           </span>
         </div>
@@ -87,18 +87,18 @@ export default function GallerySection({ data }) {
               onClick={() => setCurrentIndex(idx)}
               className={`w-10 h-10 rounded-xl overflow-hidden transition-all shrink-0 border-2 ${
                 currentIndex === idx 
-                  ? 'border-amber-500 scale-105 shadow-sm' 
-                  : 'border-transparent opacity-60 hover:opacity-100'
+                  ? 'border-neutral-950 scale-105 shadow-sm' 
+                  : 'border-transparent opacity-50 hover:opacity-100'
               }`}
             >
-              <img src={item.url} alt="" className="w-full h-full object-cover" />
+              <img src={item.url} alt="" className="w-full h-full object-cover grayscale-[20%]" />
             </button>
           ))}
         </div>
       </div>
 
       {/* Bottom Hint */}
-      <p className="text-[10px] text-stone-400 italic" data-aos="fade-up" data-aos-duration="600">
+      <p className="text-[10px] text-neutral-400 italic" data-aos="fade-up" data-aos-duration="600">
         Sentuh panah atau thumbnail untuk melihat koleksi foto lainnya
       </p>
 
@@ -121,7 +121,7 @@ export default function GallerySection({ data }) {
               alt={currentItem.caption}
               className="max-w-full max-h-[75vh] rounded-2xl object-contain shadow-2xl"
             />
-            <p className="mt-2 text-stone-200 text-xs font-medium">
+            <p className="mt-2 text-neutral-200 text-xs font-medium">
               {currentItem.caption}
             </p>
           </div>

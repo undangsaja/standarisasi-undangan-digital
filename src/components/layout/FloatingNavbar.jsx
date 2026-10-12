@@ -40,11 +40,11 @@ export default function FloatingNavbar({ isUnlocked, activePage, onSelectPage })
 
   return (
     <div className="fixed bottom-4 left-0 right-0 z-40 flex justify-center pointer-events-none px-4">
-      {/* Clean Floating Pill Navbar (4 items visible at a time, scrollable horizontally) */}
+      {/* Clean Monochrome Floating Pill Navbar (4 items visible at a time, scrollable horizontally) */}
       <nav 
         ref={scrollContainerRef}
         aria-label="Menu Undangan"
-        className="pointer-events-auto w-full max-w-[330px] rounded-full py-1.5 px-2 bg-slate-900/95 backdrop-blur-xl shadow-[0_10px_35px_rgba(0,0,0,0.55)] border border-amber-400/30 flex items-center overflow-x-auto snap-x snap-mandatory scroll-smooth select-none"
+        className="pointer-events-auto w-full max-w-[330px] rounded-full py-1.5 px-2 bg-neutral-950/95 backdrop-blur-xl shadow-[0_10px_35px_rgba(0,0,0,0.65)] border border-white/20 flex items-center overflow-x-auto snap-x snap-mandatory scroll-smooth select-none"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {PAGES.map((page) => {
@@ -58,20 +58,20 @@ export default function FloatingNavbar({ isUnlocked, activePage, onSelectPage })
               onClick={() => onSelectPage(page.id)}
               className={`relative flex flex-col items-center justify-center py-1.5 px-1 rounded-full transition-all duration-200 shrink-0 min-w-[25%] w-1/4 snap-center ${
                 isActive 
-                  ? 'text-amber-300 scale-105 font-bold' 
-                  : 'text-stone-400 hover:text-stone-200'
+                  ? 'text-white scale-105 font-bold' 
+                  : 'text-neutral-400 hover:text-neutral-200'
               }`}
               title={page.label}
               aria-label={page.label}
             >
               {/* Active Highlight Glow */}
               {isActive && (
-                <span className="absolute inset-x-1 inset-y-0.5 bg-amber-400/20 rounded-full -z-10 border border-amber-400/50 shadow-inner" />
+                <span className="absolute inset-x-1 inset-y-0.5 bg-white/15 rounded-full -z-10 border border-white/35 shadow-inner" />
               )}
               
               <Icon size={18} className={isActive ? 'stroke-[2.4]' : 'stroke-[1.8]'} />
               <span className={`text-[9.5px] mt-0.5 tracking-tight whitespace-nowrap ${
-                isActive ? 'text-amber-300 font-bold' : 'font-medium opacity-80'
+                isActive ? 'text-white font-bold' : 'font-medium opacity-80'
               }`}>
                 {page.label}
               </span>

@@ -5,13 +5,13 @@ export default function QuotesSection({ data }) {
   const { source, content } = data.quotes;
 
   return (
-    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-6 pb-24 bg-stone-900 text-stone-100 flex flex-col items-center justify-center text-center relative select-none">
-      {/* Subtle background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(203,176,126,0.15)_0%,_transparent_70%)] pointer-events-none" />
+    <div className="w-full h-full max-h-[100dvh] overflow-hidden p-6 pb-24 bg-neutral-950 text-neutral-100 flex flex-col items-center justify-center text-center relative select-none">
+      {/* Subtle monochrome background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08)_0%,_transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 max-w-sm flex flex-col items-center my-auto">
         <div 
-          className="w-12 h-12 rounded-full bg-amber-400/10 border border-amber-400/25 flex items-center justify-center text-amber-300 mb-5 shadow-sm"
+          className="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white mb-5 shadow-sm"
           data-aos="zoom-in"
           data-aos-duration="600"
         >
@@ -19,7 +19,7 @@ export default function QuotesSection({ data }) {
         </div>
 
         <span 
-          className="text-[10px] font-semibold uppercase tracking-[0.3em] text-amber-300/80 mb-3"
+          className="text-[10px] font-semibold uppercase tracking-[0.3em] text-neutral-400 mb-3"
           data-aos="fade-down"
           data-aos-duration="600"
         >
@@ -27,17 +27,17 @@ export default function QuotesSection({ data }) {
         </span>
 
         <blockquote 
-          className="font-serif italic text-sm sm:text-base text-stone-200 leading-relaxed mb-5 px-3"
+          className="font-serif italic text-sm sm:text-base text-neutral-200 leading-relaxed mb-5 px-3"
           data-aos="fade-up"
           data-aos-duration="800"
         >
           "{content}"
         </blockquote>
 
-        <div className="w-14 h-0.5 bg-amber-400/30 mb-3" data-aos="zoom-in" data-aos-duration="500" />
+        <div className="w-14 h-0.5 bg-white/30 mb-3" data-aos="zoom-in" data-aos-duration="500" />
 
         <cite 
-          className="not-italic text-[11px] tracking-widest font-semibold uppercase text-amber-300"
+          className="not-italic text-[11px] tracking-widest font-semibold uppercase text-white"
           data-aos="fade-up"
           data-aos-duration="700"
         >
