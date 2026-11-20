@@ -1,6 +1,6 @@
 /**
  * Catalog of invitation templates.
- * Active: Red Elegants + Ivory Gold Botanical. Others coming soon.
+ * Active: Red Elegants + Cherry Blossom + Ivory Gold Botanical. Others coming soon.
  */
 export const TEMPLATES = [
   {
@@ -13,6 +13,17 @@ export const TEMPLATES = [
     palette: ['#4A0A12', '#7C1220', '#B98A35', '#F3E6D0'],
     fonts: ['Cinzel', 'Great Vibes', 'Cormorant Garamond', 'DM Mono'],
     features: ['Velvet swag', 'Night mode', 'Damask', 'Gold tassels'],
+  },
+  {
+    id: 'cherry-blossom',
+    name: 'Cherry Blossom',
+    tagline: 'Hanami · Blush · Sakura',
+    status: 'active',
+    description:
+      'Ranting sakura bersemi di atas kertas blush, kelopak berguguran lembut, dan garis rambut mawar — romansa hanami yang segar dan lapang.',
+    palette: ['#FFF8FA', '#F6D0DB', '#D06982', '#799375'],
+    fonts: ['Cormorant Garamond', 'Parisienne', 'Jost'],
+    features: ['Falling petals', 'Sakura branch', 'Blush paper', 'Hanami veil'],
   },
   {
     id: 'ivory-gold',
@@ -59,6 +70,11 @@ export function getTemplate(id) {
 
 export function isRedElegants(id) {
   return (id || '').toLowerCase().includes('red');
+}
+
+export function isCherryBlossom(id) {
+  const key = (id || '').toLowerCase();
+  return key.includes('cherry') || key.includes('blossom');
 }
 
 export function isIvoryGold(id) {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { SiteHeader, SectionHead, useReveal, Toast } from '../components/layout/SiteChrome';
-import { DEFAULT_DRAFT, getTemplate, saveDraft, TEMPLATES, isRedElegants } from '../data/templates';
+import { DEFAULT_DRAFT, getTemplate, saveDraft, TEMPLATES, isRedElegants, isCherryBlossom } from '../data/templates';
 import RedElegantDefs from '../components/ornaments/RedElegantDefs';
+import CherryBlossomDefs from '../components/ornaments/CherryBlossomDefs';
 
 const NAV = [
   { id: 'home', label: 'Home' },
@@ -315,14 +316,106 @@ export default function CreatePage({ onNavigate, draft, onDraftChange, selectedT
             {/* Live preview card */}
             <div className="reveal lg:sticky lg:top-6" style={{ '--d': '.12s' }}>
               <div className="relative mx-auto max-w-[380px]">
-                <svg className="corner absolute -top-6 -left-8 w-[58%] pointer-events-none" viewBox="0 0 480 360">
-                  <use href="#cluster-a" />
-                </svg>
-                <svg className="corner absolute -bottom-6 -right-8 w-[52%] pointer-events-none scale-[-1,-1]" viewBox="0 0 480 360">
-                  <use href="#cluster-b" />
-                </svg>
+                {!isCherryBlossom(template.id) && (
+                  <>
+                    <svg className="corner absolute -top-6 -left-8 w-[58%] pointer-events-none" viewBox="0 0 480 360">
+                      <use href="#cluster-a" />
+                    </svg>
+                    <svg className="corner absolute -bottom-6 -right-8 w-[52%] pointer-events-none scale-[-1,-1]" viewBox="0 0 480 360">
+                      <use href="#cluster-b" />
+                    </svg>
+                  </>
+                )}
+                {isCherryBlossom(template.id) && (
+                  <>
+                    <img
+                      src="/ornaments/cherry-branch.svg"
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute -top-7 -left-12 w-[70%] max-w-none pointer-events-none select-none"
+                    />
+                    <img
+                      src="/ornaments/cherry-branch.svg"
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute -bottom-8 -right-12 w-[62%] max-w-none pointer-events-none select-none scale-[-1,-1]"
+                    />
+                  </>
+                )}
 
-                <div className="relative z-10 bg-gradient-to-b from-ivory-50 to-ivory-300 border border-gold/45 px-7 py-12 text-center shadow-[0_30px_70px_rgba(120,92,48,.18)]">
+                <div
+                  className={`relative z-10 px-7 py-12 text-center ${
+                    isCherryBlossom(template.id)
+                      ? 'bg-gradient-to-b from-[#FFF8FA] to-[#FDEDF2] border border-[#D06982]/35 shadow-[0_30px_70px_rgba(168,74,102,.14)]'
+                      : 'bg-gradient-to-b from-ivory-50 to-ivory-300 border border-gold/45 shadow-[0_30px_70px_rgba(120,92,48,.18)]'
+                  }`}
+                >
+                  {isCherryBlossom(template.id) && (
+                    <>
+                      <CherryBlossomDefs />
+                      <div className="relative z-10">
+                        <div className="relative w-20 h-20 mx-auto animate-floaty">
+                          <svg className="w-20 h-20" viewBox="0 0 160 160">
+                            <use href="#cb-monogram" />
+                          </svg>
+                          <span
+                            className="absolute inset-0 grid place-items-center text-[34px] leading-none text-[#A84A66] pb-1.5"
+                            style={{ fontFamily: "'Parisienne', cursive" }}
+                          >
+                            &amp;
+                          </span>
+                        </div>
+                        <div
+                          className="text-[10px] tracking-[.5em] uppercase text-[#A84A66] mt-4"
+                          style={{ fontFamily: 'Jost, sans-serif' }}
+                        >
+                          The Wedding Of
+                        </div>
+                        <div
+                          className="text-[28px] leading-tight text-[#4A3038] mt-3"
+                          style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}
+                        >
+                          {form.groom.short || 'Groom'}
+                        </div>
+                        <div
+                          className="text-[#D06982] text-2xl my-0.5"
+                          style={{ fontFamily: "'Parisienne', cursive" }}
+                        >
+                          and
+                        </div>
+                        <div
+                          className="text-[28px] leading-tight text-[#4A3038]"
+                          style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}
+                        >
+                          {form.bride.short || 'Bride'}
+                        </div>
+                        <svg width="180" height="24" viewBox="0 0 400 40" className="mt-4 mx-auto">
+                          <use href="#cb-divider" />
+                        </svg>
+                        <div
+                          className="text-4xl text-[#4A3038] mt-4 px-4 border-x border-[#D06982]/60 inline-block"
+                          style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}
+                        >
+                          {form.day || '23'}
+                        </div>
+                        <div
+                          className="text-[11px] tracking-[.28em] uppercase text-[#A84A66] mt-3"
+                          style={{ fontFamily: 'Jost, sans-serif' }}
+                        >
+                          {form.weekday} · {form.monthSide}
+                        </div>
+                        <div
+                          className="italic text-[#8A6B74] mt-4 text-[15px]"
+                          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                          {form.city} · {form.venue}
+                        </div>
+                        <svg width="130" height="86" viewBox="0 0 240 160" className="mt-5 mx-auto">
+                          <use href="#cb-sprig" />
+                        </svg>
+                      </div>
+                    </>
+                  )}
                   {isRedElegants(template.id) && (
                     <>
                       <RedElegantDefs />
@@ -361,7 +454,7 @@ export default function CreatePage({ onNavigate, draft, onDraftChange, selectedT
                       </div>
                     </>
                   )}
-                  {!isRedElegants(template.id) && (
+                  {!isRedElegants(template.id) && !isCherryBlossom(template.id) && (
                     <>
                       <div className="absolute inset-2.5 border border-gold/25 pointer-events-none" />
                       <svg className="w-20 h-20 mx-auto animate-floaty" viewBox="0 0 160 160">

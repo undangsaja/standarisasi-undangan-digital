@@ -1,7 +1,8 @@
 import React from 'react';
 import { SiteHeader, SectionHead, useReveal } from '../components/layout/SiteChrome';
 import RedElegantDefs from '../components/ornaments/RedElegantDefs';
-import { TEMPLATES, isRedElegants } from '../data/templates';
+import CherryBlossomDefs from '../components/ornaments/CherryBlossomDefs';
+import { TEMPLATES, isRedElegants, isCherryBlossom } from '../data/templates';
 
 const NAV = [
   { id: 'home', label: 'Home' },
@@ -35,16 +36,18 @@ export default function TemplatesPage({ onNavigate, selectedTemplate, onSelectTe
                 Pilih <em>template</em> undangan
               </>
             }
-            lead="Koleksi template berbasis SVG murni — tajam dari layar ponsel hingga spanduk cetak. Dua template siap pakai, sisanya menyusul."
+            lead="Koleksi template berbasis SVG murni — tajam dari layar ponsel hingga spanduk cetak. Tiga template siap pakai, sisanya menyusul."
           />
 
           <RedElegantDefs />
+          <CherryBlossomDefs />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
             {TEMPLATES.map((t, i) => {
               const selected = active === t.id;
               const isLive = t.status === 'active';
               const isRed = isRedElegants(t.id);
+              const isCherry = isCherryBlossom(t.id);
               return (
                 <article
                   key={t.id}
@@ -66,13 +69,80 @@ export default function TemplatesPage({ onNavigate, selectedTemplate, onSelectTe
                     style={{
                       background: isRed
                         ? 'linear-gradient(160deg,#7c1220,#4a0a12)'
-                        : isLive
-                          ? 'linear-gradient(to bottom, #FBF4E8, #E9D9BD)'
-                          : `linear-gradient(135deg, ${t.palette[0]}, ${t.palette[3] || t.palette[1]})`,
-                      borderColor: isRed ? 'rgba(185,138,53,.45)' : undefined,
+                        : isCherry
+                          ? 'linear-gradient(165deg,#FFF8FA,#FDEDF2)'
+                          : isLive
+                            ? 'linear-gradient(to bottom, #FBF4E8, #E9D9BD)'
+                            : `linear-gradient(135deg, ${t.palette[0]}, ${t.palette[3] || t.palette[1]})`,
+                      borderColor: isRed
+                        ? 'rgba(185,138,53,.45)'
+                        : isCherry
+                          ? 'rgba(208,105,130,.4)'
+                          : undefined,
                     }}
                   >
-                    {isRed ? (
+                    {isCherry ? (
+                      <>
+                        <img
+                          src="/ornaments/cherry-branch.svg"
+                          alt=""
+                          aria-hidden="true"
+                          className="absolute -top-4 -left-10 w-[64%] max-w-none pointer-events-none select-none opacity-95"
+                        />
+                        <img
+                          src="/ornaments/cherry-branch.svg"
+                          alt=""
+                          aria-hidden="true"
+                          className="absolute -bottom-5 -right-10 w-[58%] max-w-none pointer-events-none select-none opacity-90 scale-[-1,-1]"
+                        />
+                        <div className="relative z-10 flex flex-col items-center text-center px-8">
+                          <div className="relative w-16 h-16 animate-floaty">
+                            <svg className="w-16 h-16" viewBox="0 0 160 160">
+                              <use href="#cb-monogram" />
+                            </svg>
+                            <span
+                              className="absolute inset-0 grid place-items-center text-[26px] leading-none text-[#A84A66] pb-1"
+                              style={{ fontFamily: "'Parisienne', cursive" }}
+                            >
+                              &amp;
+                            </span>
+                          </div>
+                          <div
+                            className="text-[10px] tracking-[.45em] uppercase text-[#A84A66] mt-3"
+                            style={{ fontFamily: 'Jost, sans-serif' }}
+                          >
+                            The Wedding Of
+                          </div>
+                          <div
+                            className="text-2xl md:text-3xl text-[#4A3038] mt-2 leading-tight"
+                            style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}
+                          >
+                            {t.name.split(' ')[0]}
+                          </div>
+                          <div
+                            className="text-xl text-[#D06982] my-0.5"
+                            style={{ fontFamily: "'Parisienne', cursive" }}
+                          >
+                            &amp;
+                          </div>
+                          <div
+                            className="text-2xl md:text-3xl text-[#4A3038] leading-tight"
+                            style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}
+                          >
+                            {t.name.split(' ').slice(1).join(' ') || 'Template'}
+                          </div>
+                          <div className="flex gap-2 mt-4">
+                            {t.palette.map((c) => (
+                              <span
+                                key={c}
+                                className="w-3.5 h-3.5 rounded-full border border-[#D06982]/35"
+                                style={{ background: c }}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </>
+                    ) : isRed ? (
                       <div className="relative z-10 flex flex-col items-center text-center px-6 text-[#f6e8ce]">
                         <svg className="w-14 h-14 mb-3" viewBox="0 0 160 160">
                           <use href="#re-monogram" />
@@ -212,7 +282,7 @@ export default function TemplatesPage({ onNavigate, selectedTemplate, onSelectTe
 
           <div className="mt-16 text-center reveal">
             <p className="font-display italic text-lg text-ink-soft">
-              Satu template live hari ini — yang lain menyusul dengan gaya berbeda.
+              Tiga template live hari ini — yang lain menyusul dengan gaya berbeda.
             </p>
             <div className="divider-diamond mt-6">
               <span className="line" />

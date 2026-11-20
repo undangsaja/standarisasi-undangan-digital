@@ -6,7 +6,8 @@ import TemplatesPage from './pages/TemplatesPage';
 import CreatePage from './pages/CreatePage';
 import InvitationPage from './pages/InvitationPage';
 import RedElegantInvitation from './pages/RedElegantInvitation';
-import { DEFAULT_DRAFT, TEMPLATES, loadDraft, saveDraft, isRedElegants } from './data/templates';
+import CherryBlossomInvitation from './pages/CherryBlossomInvitation';
+import { DEFAULT_DRAFT, TEMPLATES, loadDraft, saveDraft, isRedElegants, isCherryBlossom } from './data/templates';
 
 function resolveRoute() {
   if (typeof window === 'undefined') return 'home';
@@ -72,7 +73,9 @@ export default function App() {
       );
       break;
     case 'invitation':
-      page = isRedElegants(selectedTemplate) ? (
+      page = isCherryBlossom(selectedTemplate) ? (
+        <CherryBlossomInvitation onNavigate={navigate} draft={draft} />
+      ) : isRedElegants(selectedTemplate) ? (
         <RedElegantInvitation onNavigate={navigate} draft={draft} />
       ) : (
         <InvitationPage onNavigate={navigate} draft={draft} />
