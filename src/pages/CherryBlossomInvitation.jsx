@@ -139,18 +139,24 @@ const CB_CSS = `
     position:absolute;pointer-events:none;select-none;object-fit:contain;
     opacity:.92;
   }
-  .cb-petal-layer {
-    position:absolute;top:-6vh;width:14px;height:14px;opacity:0;pointer-events:none;
-    background:radial-gradient(circle at 35% 30%, #FBE5EA, #F6D0DB 55%, #E8A8BC 100%);
-    border-radius:80% 20% 70% 30%;
-    box-shadow:0 2px 8px rgba(168,74,102,.18);
-    animation:cbPetal linear infinite;
+  .cb-petal-wrap {
+    position:absolute;top:-12vh;pointer-events:none;
+    animation:cbPetalFall linear infinite;
   }
-  @keyframes cbPetal {
-    0%{opacity:0;transform:translate3d(0,-8vh,0) rotate(0)}
-    10%{opacity:.9}
-    90%{opacity:.5}
-    100%{opacity:0;transform:translate3d(var(--drift,40px),110vh,0) rotate(var(--spin,360deg))}
+  .cb-petal-img {
+    width:100%;height:100%;display:block;
+    background:url('/ornaments/cb-petal.webp') center/contain no-repeat;
+    animation:cbPetalSway ease-in-out infinite alternate;
+  }
+  @keyframes cbPetalFall {
+    0%{opacity:0;transform:translate3d(0,-8vh,0) rotate(0deg)}
+    9%{opacity:1}
+    88%{opacity:1}
+    100%{opacity:0;transform:translate3d(var(--drift,60px),118vh,0) rotate(var(--spin,360deg))}
+  }
+  @keyframes cbPetalSway {
+    from{transform:translateX(var(--sway-a,-14px)) rotate(var(--rot-a,-26deg)) scaleX(var(--flip,1))}
+    to{transform:translateX(var(--sway-b,14px)) rotate(var(--rot-b,26deg)) scaleX(var(--flip,1))}
   }
   @keyframes cbFadeUp {
     from{opacity:0;transform:translateY(22px)}
@@ -163,7 +169,7 @@ const CB_CSS = `
   @keyframes cbDraw { to { stroke-dashoffset:0 } }
   @media (prefers-reduced-motion: reduce) {
     .cb-reveal { opacity:1 !important; transform:none !important; }
-    .cb-petal-layer { display:none; }
+    .cb-petal-wrap { display:none; }
     .cb-btn, .cb-btn-ghost { animation:none; }
   }
 `;
@@ -213,35 +219,64 @@ function useRevealCb(deps = []) {
 }
 
 /** Pink sakura petals — SiteChrome's shared .petal is ivory/gold. */
-function CherryPetals() {
+function CherryPetals({ count = 28 }) {
   const petals = React.useMemo(() => {
     if (typeof window === 'undefined') return [];
-    return Array.from({ length: 16 }, (_, i) => ({
-      id: i,
-      left: Math.random() * 100,
-      size: 9 + Math.random() * 12,
-      drift: Math.random() * 180 - 90,
-      spin: Math.random() * 720 - 360,
-      duration: 11 + Math.random() * 12,
-      delay: -Math.random() * 16,
-    }));
-  }, []);
+    return Array.from({ length: count }, (_, i) => {
+      const near = Math.random() < 0.4;
+      return {
+        id: i,
+        left: Math.random() * 100,
+        size: near ? 22 + Math.random() * 18 : 11 + Math.random() * 11,
+        near,
+        drift: (Math.random() * 2 - 1) * (near ? 190 : 110),
+        spin: (Math.random() * 2 - 1) * 420,
+        duration: near ? 9 + Math.random() * 7 : 15 + Math.random() * 12,
+        delay: -Math.random() * 22,
+        sway: 2.2 + Math.random() * 3.4,
+        swayA: -10 - Math.random() * 18,
+        swayB: 10 + Math.random() * 18,
+        rotA: -22 - Math.random() * 32,
+        rotB: 22 + Math.random() * 32,
+        opacity: near ? 0.82 + Math.random() * 0.18 : 0.32 + Math.random() * 0.36,
+        blur: near ? 0 : Math.random() * 1.6,
+        flip: Math.random() < 0.5,
+      };
+    });
+  }, [count]);
+
   return (
     <div className="fixed inset-0 z-40 pointer-events-none overflow-hidden" aria-hidden="true">
       {petals.map((p) => (
         <span
           key={p.id}
-          className="cb-petal-layer"
+          className="cb-petal-wrap"
           style={{
             left: `${p.left}vw`,
             width: p.size,
-            height: p.size * 0.95,
+            height: p.size * 1.05,
             '--drift': `${p.drift}px`,
             '--spin': `${p.spin}deg`,
             animationDuration: `${p.duration}s`,
             animationDelay: `${p.delay}s`,
           }}
-        />
+        >
+          <span
+            className="cb-petal-img"
+            style={{
+              opacity: p.opacity,
+              '--sway-a': `${p.swayA}px`,
+              '--sway-b': `${p.swayB}px`,
+              '--rot-a': `${p.rotA}deg`,
+              '--rot-b': `${p.rotB}deg`,
+              '--flip': p.flip ? -1 : 1,
+              animationDuration: `${p.sway}s`,
+              filter: p.blur
+                ? `blur(${p.blur}px) drop-shadow(0 3px 8px rgba(168,74,102,.16))`
+                : 'drop-shadow(0 3px 8px rgba(168,74,102,.22))',
+            }}
+          />
+        </span>
       ))}
     </div>
   );
@@ -366,19 +401,20 @@ export default function CherryBlossomInvitation({ onNavigate, draft }) {
       }}
     >
       <CherryBlossomDefs />
+      <CherryPetals count={18} />
       {/* signature branch top-left */}
       <img
-        src="/ornaments/cherry-branch.svg"
+        src="/ornaments/cb-branch-corner.webp"
         alt=""
         aria-hidden="true"
-        className="cb-branch-img left-[-4%] top-[-6%] w-[min(52vw,520px)] opacity-95"
+        className="cb-branch-img left-[-12%] top-[-10%] w-[min(72vw,620px)] opacity-95"
       />
       {/* mirrored branch bottom-right */}
       <img
-        src="/ornaments/cherry-branch.svg"
+        src="/ornaments/cb-branch-corner.webp"
         alt=""
         aria-hidden="true"
-        className="cb-branch-img right-[-6%] bottom-[-8%] w-[min(50vw,500px)] opacity-90 scale-x-[-1]"
+        className="cb-branch-img right-[-12%] bottom-[-12%] w-[min(66vw,560px)] opacity-85 scale-x-[-1] scale-y-[-1]"
       />
       {/* soft blossom arch framing the cover */}
       <svg
@@ -397,10 +433,16 @@ export default function CherryBlossomInvitation({ onNavigate, draft }) {
           The Wedding Of
         </p>
         <div
-          className="mx-auto mt-5 w-[128px] h-[128px]"
+          className="relative mx-auto mt-5 w-[128px] h-[128px]"
           style={{ animation: 'cbFadeUp 1s .45s cubic-bezier(.2,.8,.25,1) both' }}
         >
-          <svg viewBox="0 0 160 160" className="w-full h-full">
+          <img
+            src="/ornaments/cb-bouquet.webp"
+            alt=""
+            aria-hidden="true"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] max-w-none opacity-45 pointer-events-none"
+          />
+          <svg viewBox="0 0 160 160" className="relative w-full h-full">
             <use href="#cb-monogram" />
           </svg>
         </div>
@@ -548,24 +590,30 @@ export default function CherryBlossomInvitation({ onNavigate, draft }) {
       {/* HERO */}
       <section id="home" className="relative overflow-hidden pt-8 pb-20 px-5 md:px-12 text-center">
         <img
-          src="/ornaments/cherry-branch.svg"
+          src="/ornaments/cb-branch-corner.webp"
           alt=""
           aria-hidden="true"
-          className="cb-branch-img left-[-8%] top-[-4%] w-[min(42vw,420px)] opacity-85"
+          className="cb-branch-img left-[-14%] top-[-8%] w-[min(60vw,540px)] opacity-90"
         />
         <img
-          src="/ornaments/cherry-branch.svg"
+          src="/ornaments/cb-branch-corner.webp"
           alt=""
           aria-hidden="true"
-          className="cb-branch-img right-[-8%] top-[8%] w-[min(38vw,380px)] opacity-75 scale-x-[-1]"
+          className="cb-branch-img right-[-14%] top-[2%] w-[min(52vw,460px)] opacity-70 scale-x-[-1]"
         />
 
         <div className="relative z-10 max-w-[820px] mx-auto pt-[min(10vh,80px)]">
           <div
-            className="cb-reveal w-[140px] h-[140px] mx-auto"
+            className="cb-reveal relative w-[140px] h-[140px] mx-auto"
             style={{ '--d': '0.1s', animation: 'cbFloat 7s ease-in-out infinite' }}
           >
-            <svg viewBox="0 0 160 160" className="w-full h-full">
+            <img
+              src="/ornaments/cb-bouquet.webp"
+              alt=""
+              aria-hidden="true"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] max-w-none opacity-40 pointer-events-none"
+            />
+            <svg viewBox="0 0 160 160" className="relative w-full h-full">
               <use href="#cb-monogram" />
             </svg>
             <span className="sr-only">{initials}</span>
@@ -657,6 +705,12 @@ export default function CherryBlossomInvitation({ onNavigate, draft }) {
               'linear-gradient(160deg, rgba(246,208,219,.55), rgba(255,248,250,.9) 40%, rgba(251,229,234,.7))',
           }}
         />
+        <img
+          src="/ornaments/cb-scatter.webp"
+          alt=""
+          aria-hidden="true"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(100vw,820px)] max-w-none opacity-30 pointer-events-none"
+        />
         <div className="relative z-10 max-w-[880px] mx-auto text-center">
           <div className="cb-reveal">
             <svg width="72" height="54" viewBox="0 0 240 160" className="mx-auto mb-4">
@@ -733,11 +787,17 @@ export default function CherryBlossomInvitation({ onNavigate, draft }) {
             ].map((p, idx) => (
               <React.Fragment key={p.role}>
                 {idx === 1 && (
-                  <div className="hidden md:block cb-reveal text-center" style={{ '--d': '0.15s' }}>
-                    <svg width="88" height="64" viewBox="0 0 240 160" className="mx-auto mb-3">
+                  <div className="hidden md:block cb-reveal relative text-center" style={{ '--d': '0.15s' }}>
+                    <img
+                      src="/ornaments/cb-bouquet.webp"
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] max-w-none opacity-50 pointer-events-none"
+                    />
+                    <svg width="88" height="64" viewBox="0 0 240 160" className="relative mx-auto mb-3">
                       <use href="#cb-sprig" />
                     </svg>
-                    <span className="cb-script text-[64px] block leading-none">&amp;</span>
+                    <span className="relative cb-script text-[64px] block leading-none">&amp;</span>
                   </div>
                 )}
                 <div className={`cb-reveal text-center ${idx === 0 ? '' : 'md:order-none'}`} style={{ '--d': `${0.1 + idx * 0.12}s` }}>
@@ -969,16 +1029,22 @@ export default function CherryBlossomInvitation({ onNavigate, draft }) {
       >
         <div className="absolute inset-0 opacity-40 pointer-events-none">
           <img
-            src="/ornaments/cherry-branch.svg"
+            src="/ornaments/cb-branch-corner.webp"
             alt=""
             aria-hidden="true"
-            className="cb-branch-img left-[-10%] bottom-[-20%] w-[min(55vw,520px)] opacity-70"
+            className="cb-branch-img left-[-12%] top-[-14%] w-[min(58vw,520px)] opacity-80"
           />
           <img
-            src="/ornaments/cherry-branch.svg"
+            src="/ornaments/cb-branch-corner.webp"
             alt=""
             aria-hidden="true"
-            className="cb-branch-img right-[-10%] top-[-10%] w-[min(45vw,420px)] opacity-55 scale-x-[-1]"
+            className="cb-branch-img right-[-12%] bottom-[-14%] w-[min(52vw,460px)] opacity-65 scale-x-[-1] scale-y-[-1]"
+          />
+          <img
+            src="/ornaments/cb-scatter.webp"
+            alt=""
+            aria-hidden="true"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(90vw,760px)] max-w-none opacity-55"
           />
         </div>
         <div className="relative z-10 max-w-[800px] mx-auto text-center">
@@ -1127,10 +1193,10 @@ export default function CherryBlossomInvitation({ onNavigate, draft }) {
         }}
       >
         <img
-          src="/ornaments/cherry-branch.svg"
+          src="/ornaments/cb-bouquet.webp"
           alt=""
           aria-hidden="true"
-          className="cb-branch-img left-1/2 -translate-x-1/2 bottom-[-30%] w-[min(70vw,480px)] opacity-55"
+          className="cb-branch-img left-1/2 -translate-x-1/2 bottom-[-38%] w-[min(72vw,520px)] opacity-60"
         />
         <div className="relative z-10">
           <svg width="200" height="60" viewBox="0 0 400 40" className="mx-auto mb-5">
