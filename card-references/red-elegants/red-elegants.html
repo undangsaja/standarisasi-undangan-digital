@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ornamenta — Vintage Wedding Ornament Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3e6d0;
+  --bg-2:#ece0c6;
+  --card:#fdf5e6;
+  --card-2:#f6e8ce;
+  --ink:#2b1512;
+  --muted:#86654f;
+  --wine:#7c1220;
+  --wine-dark:#4a0a12;
+  --gold:#b98a35;
+  --gold-lt:#e9cb8c;
+  --gold-dk:#8a5f1c;
+  --line:rgba(138,95,28,.32);
+  --shadow:0 30px 60px -40px rgba(74,10,18,.55);
+}
+body.night{
+  --bg:#25080d;
+  --bg-2:#2e0b11;
+  --card:#3a0e16;
+  --card-2:#48121c;
+  --ink:#f2e3c8;
+  --muted:#c09a76;
+  --line:rgba(233,203,140,.28);
+  --shadow:0 30px 70px -40px rgba(0,0,0,.9);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(185,138,53,.13), transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(124,18,32,.12), transparent 55%),
+    var(--bg);
+  color:var(--ink);
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:17px;
+  line-height:1.65;
+  overflow-x:hidden;
+  transition:background .6s ease,color .6s ease;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23b98a35' stroke-opacity='0.13' stroke-width='1.1'%3E%3Cpath d='M70 14 C 86 32 102 38 102 60 C 102 80 84 90 70 80 C 56 90 38 80 38 60 C 38 38 54 32 70 14 Z'/%3E%3Cpath d='M70 34 C 80 46 88 50 88 60 C 88 72 78 78 70 72 C 62 78 52 72 52 60 C 52 50 60 46 70 34 Z'/%3E%3Cpath d='M0 70 C 14 70 18 62 18 54 M140 70 C 126 70 122 62 122 54 M70 140 C 70 126 78 122 86 122 M70 0 C 70 14 78 18 86 18'/%3E%3Ccircle cx='70' cy='96' r='2.6'/%3E%3Ccircle cx='24' cy='24' r='2.2'/%3E%3Ccircle cx='116' cy='116' r='2.2'/%3E%3C/g%3E%3C/svg%3E");
+  opacity:.75;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:multiply;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,54px)}
+
+/* ---------- header ---------- */
+.top{
+  position:sticky;top:0;z-index:60;
+  background:color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:38px;height:38px;flex:none;border:1px solid var(--gold);border-radius:50%;
+  display:grid;place-items:center;color:var(--gold);font-family:"Cinzel",serif;font-size:15px;letter-spacing:.06em;
+}
+.brand b{font-family:"Cinzel",serif;font-weight:600;letter-spacing:.22em;font-size:13px;text-transform:uppercase}
+.brand span{display:block;font-family:"DM Mono",monospace;font-size:9.5px;letter-spacing:.28em;color:var(--muted);text-transform:uppercase}
+.top nav{display:flex;gap:26px;font-family:"DM Mono",monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+.top nav a{color:var(--muted);text-decoration:none;position:relative;padding-bottom:3px}
+.top nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .35s ease}
+.top nav a:hover{color:var(--wine)}
+.top nav a:hover::after{width:100%}
+.toggle{
+  border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;
+  font-family:"DM Mono",monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  padding:9px 15px;border-radius:2px;transition:.35s ease;
+}
+.toggle:hover{border-color:var(--gold);color:var(--gold);letter-spacing:.3em}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:clamp(56px,9vw,110px) 0 clamp(30px,5vw,58px);text-align:center}
+.hero .swag{position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1180px,102%);opacity:.95;pointer-events:none}
+.eyebrow{
+  font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.52em;text-transform:uppercase;color:var(--gold);
+}
+h1{
+  font-family:"Cinzel",serif;font-weight:700;
+  font-size:clamp(2.7rem,10vw,7.4rem);line-height:.95;letter-spacing:.06em;
+  color:var(--wine);margin:.16em 0 .05em;
+}
+h1 em{font-style:normal;display:block;color:var(--ink);letter-spacing:.34em;font-size:.31em;font-weight:500;margin-top:.9em}
+.script{
+  font-family:"Great Vibes",cursive;font-size:clamp(2.1rem,5.6vw,3.9rem);color:var(--gold-dk);line-height:1;
+}
+.lede{max-width:520px;margin:26px auto 0;font-size:1.16rem;color:var(--muted);font-style:italic;font-weight:300}
+.hero-meta{
+  margin:38px auto 0;display:flex;flex-wrap:wrap;justify-content:center;gap:0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:760px;
+}
+.hero-meta div{flex:1 1 180px;padding:18px 14px;border-right:1px solid var(--line)}
+.hero-meta div:last-child{border-right:0}
+.hero-meta dt{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.hero-meta dd{font-family:"Cinzel",serif;font-size:1.02rem;letter-spacing:.12em;margin-top:7px}
+
+/* ---------- section head ---------- */
+.sec{padding:clamp(48px,7vw,92px) 0 0}
+.sec-head{display:flex;align-items:flex-end;gap:22px;margin-bottom:clamp(26px,4vw,46px)}
+.sec-num{
+  font-family:"Cinzel",serif;font-size:clamp(2.4rem,6vw,4.2rem);line-height:.8;color:transparent;
+  -webkit-text-stroke:1px var(--gold);opacity:.7;
+}
+.sec-head h2{font-family:"Cinzel",serif;font-weight:600;font-size:clamp(1.15rem,2.6vw,1.72rem);letter-spacing:.26em;text-transform:uppercase}
+.sec-head p{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:9px}
+.sec-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:10px}
+
+/* ---------- grid + cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(18px,2.4vw,30px)}
+.orn{
+  grid-column:span 4;
+  background:linear-gradient(158deg,var(--card),var(--card-2));
+  border:1px solid var(--line);
+  padding:26px 24px 22px;
+  position:relative;
+  box-shadow:var(--shadow);
+  transition:transform .55s cubic-bezier(.2,.8,.25,1),box-shadow .55s ease,border-color .55s ease;
+}
+.orn::before{
+  content:"";position:absolute;inset:8px;border:1px solid rgba(185,138,53,.22);pointer-events:none;
+}
+.orn:hover{transform:translateY(-8px);border-color:rgba(185,138,53,.65);box-shadow:0 46px 80px -46px rgba(74,10,18,.62)}
+.span-6{grid-column:span 6}
+.span-8{grid-column:span 8}
+.span-12{grid-column:span 12}
+.stage{
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(185,138,53,.1), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,0));
+  border:1px solid rgba(185,138,53,.18);
+  padding:22px;display:grid;place-items:center;min-height:170px;overflow:hidden;
+}
+body.night .stage{background:radial-gradient(ellipse at 50% 20%, rgba(233,203,140,.12), transparent 62%)}
+.stage svg{width:100%;height:auto;display:block}
+figcaption{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:16px}
+figcaption h3{font-family:"Cinzel",serif;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+figcaption .id{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.22em;color:var(--gold);white-space:uppercase}
+.note{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.11em;color:var(--muted);margin-top:9px;line-height:1.8}
+.copy{
+  margin-top:15px;background:transparent;border:1px solid var(--line);color:var(--muted);cursor:pointer;
+  font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.26em;text-transform:uppercase;
+  padding:8px 13px;transition:.38s ease;
+}
+.copy:hover{color:var(--card);background:var(--wine);border-color:var(--wine);letter-spacing:.34em}
+body.night .copy:hover{color:#2b0a10;background:var(--gold-lt);border-color:var(--gold-lt)}
+
+/* swatch row */
+.swatches{display:flex;gap:0;border:1px solid var(--line);margin-top:20px}
+.sw{flex:1;height:74px;position:relative}
+.sw span{
+  position:absolute;left:9px;bottom:7px;font-family:"DM Mono",monospace;font-size:8px;letter-spacing:.16em;
+  color:rgba(255,255,255,.82);text-transform:uppercase;
+}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:34px;transform:translate(-50%,26px);opacity:0;pointer-events:none;
+  background:var(--wine-dark);color:#f6e8ce;border:1px solid var(--gold);
+  font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;
+  padding:13px 24px;z-index:99;transition:.45s cubic-bezier(.2,.8,.25,1);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* footer */
+footer{margin-top:clamp(60px,9vw,110px);padding:clamp(46px,7vw,80px) 0 54px;border-top:1px solid var(--line);text-align:center}
+footer .script{font-size:clamp(1.9rem,4.4vw,2.8rem);color:var(--wine)}
+footer .fnote{font-family:"DM Mono",monospace;font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-top:22px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.25,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.09s}.reveal.d2{transition-delay:.18s}.reveal.d3{transition-delay:.27s}
+
+@media(max-width:960px){
+  .orn,.span-6,.span-8{grid-column:span 6}
+  .top nav{display:none}
+}
+@media(max-width:620px){
+  .orn,.span-6,.span-8,.span-12{grid-column:span 12}
+  .sec-head{gap:14px}
+  .hero-meta div{border-right:0;border-bottom:1px solid var(--line)}
+  .hero-meta div:last-child{border-bottom:0}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SHARED SVG DEFS ============ -->
+<svg id="svg-defs" aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden">
+<defs id="core-defs">
+  <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#8a5f1c"/><stop offset="28%" stop-color="#e9cb8c"/>
+    <stop offset="55%" stop-color="#b98a35"/><stop offset="80%" stop-color="#f2ddad"/>
+    <stop offset="100%" stop-color="#8a5f1c"/>
+  </linearGradient>
+  <linearGradient id="g-gold-h" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#8a5f1c"/><stop offset="22%" stop-color="#e2c184"/>
+    <stop offset="50%" stop-color="#a97e2c"/><stop offset="78%" stop-color="#efd7a6"/>
+    <stop offset="100%" stop-color="#8a5f1c"/>
+  </linearGradient>
+  <linearGradient id="g-velvet" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#a2182a"/><stop offset="45%" stop-color="#7c1220"/>
+    <stop offset="100%" stop-color="#450910"/>
+  </linearGradient>
+  <linearGradient id="g-velvet-2" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#c22236"/><stop offset="60%" stop-color="#8c1523"/>
+    <stop offset="100%" stop-color="#520c14"/>
+  </linearGradient>
+  <radialGradient id="g-rose-a" cx="38%" cy="30%">
+    <stop offset="0%" stop-color="#e0404c"/><stop offset="52%" stop-color="#b21f2c"/>
+    <stop offset="100%" stop-color="#721020"/>
+  </radialGradient>
+  <radialGradient id="g-rose-b" cx="42%" cy="32%">
+    <stop offset="0%" stop-color="#c92c3a"/><stop offset="55%" stop-color="#8e1421"/>
+    <stop offset="100%" stop-color="#4d0a13"/>
+  </radialGradient>
+  <linearGradient id="g-leaf" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#5c7a2c"/><stop offset="60%" stop-color="#33501c"/>
+    <stop offset="100%" stop-color="#1f3412"/>
+  </linearGradient>
+  <linearGradient id="g-parch" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#fbf2e0"/><stop offset="100%" stop-color="#eddcbb"/>
+  </linearGradient>
+  <pattern id="p-damask" width="80" height="80" patternUnits="userSpaceOnUse">
+    <g fill="none" stroke="#b98a35" stroke-opacity=".3" stroke-width="1">
+      <path d="M40 8 C 51 20 61 24 61 37 C 61 50 50 56 40 50 C 30 56 19 50 19 37 C 19 24 29 20 40 8 Z"/>
+      <path d="M40 21 C 47 29 51 31 51 38 C 51 45 45 49 40 45 C 35 49 29 45 29 38 C 29 31 33 29 40 21 Z"/>
+      <circle cx="40" cy="60" r="2.2"/>
+    </g>
+  </pattern>
+</defs>
+
+<symbol id="rose" viewBox="0 0 100 100">
+  <g>
+    <path d="M50 52 C 27 48 14 30 24 15 C 33 2 53 3 60 14 C 68 28 63 46 50 52 Z" fill="url(#g-rose-a)"/>
+    <g transform="rotate(72 50 50)"><path d="M50 52 C 27 48 14 30 24 15 C 33 2 53 3 60 14 C 68 28 63 46 50 52 Z" fill="url(#g-rose-a)"/></g>
+    <g transform="rotate(144 50 50)"><path d="M50 52 C 27 48 14 30 24 15 C 33 2 53 3 60 14 C 68 28 63 46 50 52 Z" fill="url(#g-rose-a)"/></g>
+    <g transform="rotate(216 50 50)"><path d="M50 52 C 27 48 14 30 24 15 C 33 2 53 3 60 14 C 68 28 63 46 50 52 Z" fill="url(#g-rose-a)"/></g>
+    <g transform="rotate(288 50 50)"><path d="M50 52 C 27 48 14 30 24 15 C 33 2 53 3 60 14 C 68 28 63 46 50 52 Z" fill="url(#g-rose-a)"/></g>
+    <g transform="rotate(36 50 50)">
+      <path d="M50 52 C 36 50 28 39 33 30 C 38 21 51 21 56 29 C 61 39 58 48 50 52 Z" fill="url(#g-rose-b)"/>
+    </g>
+    <g transform="rotate(108 50 50)"><path d="M50 52 C 36 50 28 39 33 30 C 38 21 51 21 56 29 C 61 39 58 48 50 52 Z" fill="url(#g-rose-b)"/></g>
+    <g transform="rotate(180 50 50)"><path d="M50 52 C 36 50 28 39 33 30 C 38 21 51 21 56 29 C 61 39 58 48 50 52 Z" fill="url(#g-rose-b)"/></g>
+    <g transform="rotate(252 50 50)"><path d="M50 52 C 36 50 28 39 33 30 C 38 21 51 21 56 29 C 61 39 58 48 50 52 Z" fill="url(#g-rose-b)"/></g>
+    <g transform="rotate(324 50 50)"><path d="M50 52 C 36 50 28 39 33 30 C 38 21 51 21 56 29 C 61 39 58 48 50 52 Z" fill="url(#g-rose-b)"/></g>
+    <path d="M50 53 c -7 -3 -9 -13 -1 -17 c 9 -4 19 2 18 11 c -1 11 -13 17 -22 11" fill="none" stroke="#4d0a13" stroke-width="2.4" stroke-linecap="round" opacity=".72"/>
+    <path d="M42 40 c 4 -7 14 -9 20 -3" fill="none" stroke="#e8828c" stroke-width="1.8" stroke-linecap="round" opacity=".55"/>
+  </g>
+</symbol>
+
+<symbol id="leaf" viewBox="0 0 100 52">
+  <path d="M3 27 C 22 3 62 -4 97 17 C 68 46 26 48 3 27 Z" fill="url(#g-leaf)"/>
+  <path d="M6 27 C 32 22 66 19 94 18" fill="none" stroke="#c8d89a" stroke-width="1.3" opacity=".55"/>
+  <path d="M26 21 l 8 -8 M44 18 l 8 -8 M62 17 l 8 -8" stroke="#c8d89a" stroke-width="1" opacity=".38" fill="none"/>
+</symbol>
+
+<symbol id="blossom" viewBox="0 0 40 40">
+  <g fill="#fdf3e2">
+    <ellipse cx="20" cy="9" rx="4.6" ry="8"/>
+    <g transform="rotate(72 20 20)"><ellipse cx="20" cy="9" rx="4.6" ry="8"/></g>
+    <g transform="rotate(144 20 20)"><ellipse cx="20" cy="9" rx="4.6" ry="8"/></g>
+    <g transform="rotate(216 20 20)"><ellipse cx="20" cy="9" rx="4.6" ry="8"/></g>
+    <g transform="rotate(288 20 20)"><ellipse cx="20" cy="9" rx="4.6" ry="8"/></g>
+  </g>
+  <circle cx="20" cy="20" r="3.4" fill="#d5a24c"/>
+</symbol>
+
+<symbol id="tassel" viewBox="0 0 60 130">
+  <path d="M30 0 V22" stroke="url(#g-gold)" stroke-width="3" fill="none"/>
+  <path d="M18 22 h24 l4 12 h-32 z" fill="url(#g-gold-h)"/>
+  <rect x="16" y="34" width="28" height="12" rx="3" fill="url(#g-gold)"/>
+  <path d="M18 46 C 12 74 12 100 18 122 C 24 130 36 130 42 122 C 48 100 48 74 42 46 Z" fill="url(#g-gold-h)"/>
+  <g stroke="#8a5f1c" stroke-opacity=".55" stroke-width="1.1" fill="none">
+    <path d="M22 48 V118"/><path d="M27 48 V124"/><path d="M33 48 V124"/><path d="M38 48 V118"/>
+  </g>
+</symbol>
+
+<symbol id="rope" viewBox="0 0 200 40">
+  <path d="M2 20 C 30 4 44 36 72 20 C 100 4 114 36 142 20 C 164 8 182 12 198 20" fill="none" stroke="url(#g-gold-h)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M2 20 C 30 4 44 36 72 20 C 100 4 114 36 142 20 C 164 8 182 12 198 20" fill="none" stroke="#f4e2b6" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 6" opacity=".7"/>
+</symbol>
+
+<symbol id="fleuron" viewBox="0 0 120 90">
+  <path d="M60 6 C 70 22 82 30 96 34 C 82 38 70 46 60 62 C 50 46 38 38 24 34 C 38 30 50 22 60 6 Z" fill="url(#g-gold)"/>
+  <path d="M60 44 C 66 54 74 60 82 62 C 74 66 66 72 60 84 C 54 72 46 66 38 62 C 46 60 54 54 60 44 Z" fill="url(#g-gold-h)"/>
+  <circle cx="60" cy="34" r="3.6" fill="#7c1220"/>
+</symbol>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand">
+      <div class="brand-mark">O</div>
+      <div>
+        <b>Ornamenta</b>
+        <span>Kit Undangan · MMXXVI</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#dividers">Dividers</a>
+      <a href="#frames">Frames</a>
+      <a href="#botanical">Botanical</a>
+      <a href="#drapery">Drapery</a>
+      <a href="#symbols">Symbols</a>
+    </nav>
+    <button class="toggle" id="themeToggle">Mode Malam</button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <svg class="swag" viewBox="0 0 1200 190" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 0 H1200 V34 C 1060 44 980 60 900 78 C 800 100 720 128 600 132 C 480 128 400 100 300 78 C 220 60 140 44 0 34 Z" fill="url(#g-velvet)"/>
+    <path d="M0 34 C 140 44 220 60 300 78 C 400 100 480 128 600 132 C 720 128 800 100 900 78 C 980 60 1060 44 1200 34" fill="none" stroke="url(#g-gold-h)" stroke-width="2.2"/>
+    <path d="M0 34 C 140 44 220 60 300 78 C 400 100 480 128 600 132 C 720 128 800 100 900 78 C 980 60 1060 44 1200 34" fill="none" stroke="#e9cb8c" stroke-width="7" stroke-linecap="round" stroke-dasharray="1 7" opacity=".85"/>
+    <path d="M120 20 C 130 66 128 118 108 172 L 40 172 C 62 118 66 66 62 20 Z" fill="url(#g-velvet-2)" opacity=".95"/>
+    <path d="M1080 20 C 1070 66 1072 118 1092 172 L 1160 172 C 1138 118 1134 66 1138 20 Z" fill="url(#g-velvet-2)" opacity=".95"/>
+    <path d="M120 20 C 130 66 128 118 108 172 M1080 20 C 1070 66 1072 118 1092 172" fill="none" stroke="#e9cb8c" stroke-width="2" opacity=".7"/>
+  </svg>
+
+  <div class="wrap">
+    <p class="eyebrow reveal">Vintage Ornament Collection</p>
+    <h1 class="reveal d1">ORNAMENTA<em>Ornamen Emas &amp; Beludru Merah</em></h1>
+    <p class="script reveal d2">undangan pernikahan</p>
+    <p class="lede reveal d2">A complete vector ornament set drawn from a classic Indonesian wedding invitation — gold filigree, damask, velvet drapery and red roses, rebuilt as clean, scalable SVG.</p>
+
+    <dl class="hero-meta reveal d3">
+      <div><dt>Elements</dt><dd>13 Ornaments</dd></div>
+      <div><dt>Format</dt><dd>Inline SVG</dd></div>
+      <div><dt>Palette</dt><dd>Gold · Wine · Parchment</dd></div>
+      <div><dt>Licence</dt><dd>Free to Use</dd></div>
+    </dl>
+
+    <div class="swatches reveal d3">
+      <div class="sw" style="background:#4a0a12"><span>#4A0A12</span></div>
+      <div class="sw" style="background:#7c1220"><span>#7C1220</span></div>
+      <div class="sw" style="background:#b21f2c"><span>#B21F2C</span></div>
+      <div class="sw" style="background:#b98a35"><span>#B98A35</span></div>
+      <div class="sw" style="background:#e9cb8c"><span>#E9CB8C</span></div>
+      <div class="sw" style="background:#f3e6d0"><span style="color:#7c1220">#F3E6D0</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ I. DIVIDERS ============ -->
+<section class="sec" id="dividers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">I</div>
+      <div>
+        <h2>Pembatas Emas</h2>
+        <p>Gold Dividers · Section Rules · Fleurons</p>
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+
+    <div class="grid">
+      <!-- divider 1 -->
+      <figure class="orn span-6 reveal">
+        <div class="stage">
+          <svg viewBox="0 0 520 90">
+            <g fill="none" stroke="url(#g-gold-h)" stroke-width="1.5" stroke-linecap="round">
+              <path d="M14 45 H196"/>
+              <path d="M196 45 c 18 -2 26 -14 18 -22 c -7 -7 -18 -1 -14 7 c 2 5 9 6 13 2"/>
+              <path d="M196 45 c 18 2 26 14 18 22 c -7 7 -18 1 -14 -7 c 2 -5 9 -6 13 -2"/>
+            </g>
+            <g transform="translate(520,0) scale(-1,1)" fill="none" stroke="url(#g-gold-h)" stroke-width="1.5" stroke-linecap="round">
+              <path d="M14 45 H196"/>
+              <path d="M196 45 c 18 -2 26 -14 18 -22 c -7 -7 -18 -1 -14 7 c 2 5 9 6 13 2"/>
+              <path d="M196 45 c 18 2 26 14 18 22 c -7 7 -18 1 -14 -7 c 2 -5 9 -6 13 -2"/>
+            </g>
+            <path d="M260 12 C 271 28 282 36 300 41 C 282 46 271 54 260 70 C 249 54 238 46 220 41 C 238 36 249 28 260 12 Z" fill="url(#g-gold)"/>
+            <circle cx="260" cy="41" r="4.2" fill="#7c1220"/>
+            <circle cx="214" cy="41" r="2.6" fill="url(#g-gold)"/>
+            <circle cx="306" cy="41" r="2.6" fill="url(#g-gold)"/>
+          </svg>
+        </div>
+        <figcaption><h3>Divider Fleuron</h3><span class="id">ORN · 01</span></figcaption>
+        <p class="note">Central quatrefoil star · mirrored double scroll · 520 × 90</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+
+      <!-- divider 2 -->
+      <figure class="orn span-6 reveal d1">
+        <div class="stage">
+          <svg viewBox="0 0 520 90">
+            <path d="M18 62 C 88 16 148 74 216 44 C 258 26 262 26 304 44 C 372 74 432 16 502 62" fill="none" stroke="url(#g-gold-h)" stroke-width="2" stroke-linecap="round"/>
+            <g fill="url(#g-gold)">
+              <path d="M96 34 C 106 20 126 18 132 26 C 124 36 108 40 96 34 Z"/>
+              <path d="M158 60 C 172 58 186 68 184 78 C 170 78 158 70 158 60 Z"/>
+              <path d="M362 60 C 348 58 334 68 336 78 C 350 78 362 70 362 60 Z"/>
+              <path d="M424 34 C 414 20 394 18 388 26 C 396 36 412 40 424 34 Z"/>
+              <circle cx="260" cy="34" r="5"/>
+            </g>
+            <g fill="#7c1220"><circle cx="260" cy="34" r="2"/></g>
+          </svg>
+        </div>
+        <figcaption><h3>Vine &amp; Leaf Rule</h3><span class="id">ORN · 02</span></figcaption>
+        <p class="note">Undulating gold vine · leaf counter-forms · 520 × 90</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+
+      <!-- divider 3 -->
+      <figure class="orn span-12 reveal d2">
+        <div class="stage" style="min-height:150px">
+          <svg viewBox="0 0 1080 110">
+            <g fill="none" stroke="url(#g-gold-h)" stroke-width="1.4" stroke-linecap="round">
+              <path d="M20 55 H360"/><path d="M720 55 H1060"/>
+            </g>
+            <g fill="url(#g-gold)">
+              <path d="M540 22 L562 55 L540 88 L518 55 Z"/>
+              <path d="M452 34 L470 55 L452 76 L434 55 Z"/>
+              <path d="M628 34 L646 55 L628 76 L610 55 Z"/>
+              <circle cx="392" cy="55" r="4"/><circle cx="688" cy="55" r="4"/>
+              <circle cx="490" cy="55" r="3"/><circle cx="590" cy="55" r="3"/>
+            </g>
+            <path d="M540 38 C 547 46 552 50 558 55 C 552 60 547 64 540 72 C 533 64 528 60 522 55 C 528 50 533 46 540 38 Z" fill="#7c1220" opacity=".85"/>
+            <g fill="none" stroke="url(#g-gold-h)" stroke-width="1.2">
+              <path d="M360 55 c 14 -12 26 -12 32 -2"/>
+              <path d="M720 55 c -14 -12 -26 -12 -32 -2"/>
+            </g>
+          </svg>
+        </div>
+        <figcaption><h3>Diamond Chain &amp; Double Rule</h3><span class="id">ORN · 03 · Wide Banner</span></figcaption>
+        <p class="note">Full-width separator for hero sections · 1080 × 110 · scalable to any width</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ II. FRAMES ============ -->
+<section class="sec" id="frames">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">II</div>
+      <div>
+        <h2>Sudut &amp; Bingkai</h2>
+        <p>Corner Flourishes · Arch Frame · Damask Panel</p>
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+
+    <div class="grid">
+      <!-- corner -->
+      <figure class="orn span-6 reveal">
+        <div class="stage" style="min-height:260px">
+          <svg viewBox="0 0 420 260">
+            <g fill="none" stroke="url(#g-gold-h)" stroke-width="1.6" stroke-linecap="round">
+              <path d="M18 18 C 96 22 168 44 214 92"/>
+              <path d="M18 18 C 22 96 44 168 92 214"/>
+              <path d="M60 42 C 116 48 160 74 182 122"/>
+              <path d="M42 60 C 48 116 74 160 122 182"/>
+              <path d="M96 40 c 14 -12 32 -6 30 10 c -2 12 -20 14 -26 4"/>
+              <path d="M40 96 c -12 14 -6 32 10 30 c 12 -2 14 -20 4 -26"/>
+            </g>
+            <g fill="url(#g-gold)">
+              <path d="M212 88 C 226 92 236 102 240 118 C 226 112 216 102 212 88 Z"/>
+              <path d="M88 212 C 92 198 102 188 118 184 C 112 198 102 208 88 212 Z"/>
+              <circle cx="18" cy="18" r="5.5"/>
+            </g>
+            <g transform="translate(420,0) scale(-1,1)">
+              <g fill="none" stroke="url(#g-gold-h)" stroke-width="1.6" stroke-linecap="round">
+                <path d="M18 18 C 96 22 168 44 214 92"/>
+                <path d="M18 18 C 22 96 44 168 92 214"/>
+                <path d="M60 42 C 116 48 160 74 182 122"/>
+                <path d="M42 60 C 48 116 74 160 122 182"/>
+                <path d="M96 40 c 14 -12 32 -6 30 10 c -2 12 -20 14 -26 4"/>
+                <path d="M40 96 c -12 14 -6 32 10 30 c 12 -2 14 -20 4 -26"/>
+              </g>
+              <g fill="url(#g-gold)">
+                <path d="M212 88 C 226 92 236 102 240 118 C 226 112 216 102 212 88 Z"/>
+                <path d="M88 212 C 92 198 102 188 118 184 C 112 198 102 208 88 212 Z"/>
+                <circle cx="18" cy="18" r="5.5"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <figcaption><h3>Corner Scroll</h3><span class="id">ORN · 04</span></figcaption>
+        <p class="note">Mirrored pair · rotate 180° for the lower corners · 420 × 260</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+
+      <!-- arch frame -->
+      <figure class="orn span-6 reveal d1">
+        <div class="stage" style="min-height:260px">
+          <svg viewBox="0 0 320 300">
+            <path d="M26 300 V132 C 26 66 84 22 160 22 C 236 22 294 66 294 132 V300" fill="url(#g-parch)" stroke="url(#g-gold-h)" stroke-width="2.4"/>
+            <path d="M38 300 V134 C 38 74 92 34 160 34 C 228 34 282 74 282 134 V300" fill="none" stroke="url(#g-gold)" stroke-width="1" opacity=".8"/>
+            <rect x="38" y="34" width="244" height="266" fill="url(#p-damask)" opacity=".8"/>
+            <g fill="url(#g-gold)">
+              <path d="M160 46 C 172 62 186 70 202 74 C 186 78 172 86 160 102 C 148 86 134 78 118 74 C 134 70 148 62 160 46 Z"/>
+              <circle cx="160" cy="74" r="3.6" fill="#7c1220"/>
+            </g>
+            <g fill="url(#g-gold)">
+              <path d="M26 268 C 42 274 52 286 56 300 C 42 296 32 286 26 268 Z"/>
+              <path d="M294 268 C 278 274 268 286 264 300 C 278 296 288 286 294 268 Z"/>
+            </g>
+            <g fill="none" stroke="url(#g-gold-h)" stroke-width="1.3">
+              <path d="M70 286 C 100 272 220 272 250 286"/>
+            </g>
+          </svg>
+        </div>
+        <figcaption><h3>Arch Frame</h3><span class="id">ORN · 05</span></figcaption>
+        <p class="note">Ivory panel with damask fill · gold keystone fleuron · 320 × 300</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+
+      <!-- damask band -->
+      <figure class="orn span-12 reveal d2">
+        <div class="stage" style="min-height:190px;background:linear-gradient(180deg,#7c1220,#4a0a12)">
+          <svg viewBox="0 0 1080 170">
+            <rect width="1080" height="170" fill="url(#p-damask)" opacity=".55"/>
+            <rect x="0" y="0" width="1080" height="170" fill="none" stroke="url(#g-gold-h)" stroke-width="3"/>
+            <rect x="12" y="12" width="1056" height="146" fill="none" stroke="#e9cb8c" stroke-width="1" opacity=".6"/>
+            <g transform="translate(540,85) scale(1.5) translate(-60,-45)">
+              <use href="#fleuron"/>
+            </g>
+            <g fill="url(#g-gold)">
+              <circle cx="60" cy="85" r="5"/><circle cx="1020" cy="85" r="5"/>
+            </g>
+          </svg>
+        </div>
+        <figcaption><h3>Damask Band</h3><span class="id">ORN · 06 · Repeatable Pattern</span></figcaption>
+        <p class="note">Velvet red ground · gold damask tile 80 × 80 · seamless repeat</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ III. BOTANICAL ============ -->
+<section class="sec" id="botanical">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">III</div>
+      <div>
+        <h2>Botanical</h2>
+        <p>Red Roses · Leaves · Blossom Fillers</p>
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+
+    <div class="grid">
+      <!-- single rose -->
+      <figure class="orn reveal">
+        <div class="stage" style="min-height:220px">
+          <svg viewBox="0 0 220 220">
+            <use href="#rose" x="52" y="30" width="120" height="120" transform="rotate(-8 112 90)"/>
+            <use href="#leaf" x="12" y="128" width="96" height="50" transform="rotate(12 60 152)"/>
+            <use href="#leaf" x="112" y="132" width="96" height="50" transform="rotate(-18 160 156)"/>
+          </svg>
+        </div>
+        <figcaption><h3>Single Rose</h3><span class="id">ORN · 07</span></figcaption>
+        <p class="note">Five-petal bloom · radial shading · 220 × 220</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+
+      <!-- cluster -->
+      <figure class="orn span-6 reveal d1">
+        <div class="stage" style="min-height:220px">
+          <svg viewBox="0 0 460 240">
+            <use href="#leaf" x="24" y="96" width="120" height="62" transform="rotate(-24 84 127)"/>
+            <use href="#leaf" x="290" y="88" width="130" height="66" transform="rotate(20 355 121)"/>
+            <use href="#leaf" x="120" y="150" width="110" height="58" transform="rotate(16 175 179)"/>
+            <use href="#rose" x="30" y="34" width="108" height="108" transform="rotate(-10 84 88)"/>
+            <use href="#rose" x="150" y="18" width="132" height="132" transform="rotate(6 216 84)"/>
+            <use href="#rose" x="292" y="42" width="102" height="102" transform="rotate(14 343 93)"/>
+            <use href="#blossom" x="128" y="118" width="34" height="34"/>
+            <use href="#blossom" x="262" y="130" width="30" height="30"/>
+            <use href="#blossom" x="52" y="140" width="28" height="28"/>
+            <g fill="url(#g-gold)">
+              <circle cx="188" cy="150" r="4.5"/><circle cx="206" cy="158" r="3.4"/><circle cx="238" cy="152" r="4"/>
+              <circle cx="318" cy="146" r="3.6"/><circle cx="98" cy="146" r="3.6"/>
+            </g>
+          </svg>
+        </div>
+        <figcaption><h3>Bouquet Cluster</h3><span class="id">ORN · 08</span></figcaption>
+        <p class="note">Three blooms · leaves · gold berries · white fillers · 460 × 240</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+
+      <!-- sprig -->
+      <figure class="orn reveal d2">
+        <div class="stage" style="min-height:220px">
+          <svg viewBox="0 0 220 220">
+            <path d="M110 200 C 106 152 108 108 118 40" fill="none" stroke="url(#g-leaf)" stroke-width="3" stroke-linecap="round"/>
+            <use href="#leaf" x="108" y="60" width="80" height="42" transform="rotate(-28 148 81)"/>
+            <use href="#leaf" x="30" y="88" width="80" height="42" transform="rotate(28 70 109)"/>
+            <use href="#leaf" x="112" y="118" width="72" height="38" transform="rotate(-22 148 137)"/>
+            <use href="#leaf" x="34" y="146" width="70" height="36" transform="rotate(26 69 164)"/>
+            <use href="#blossom" x="98" y="18" width="30" height="30"/>
+            <use href="#blossom" x="82" y="44" width="22" height="22"/>
+          </svg>
+        </div>
+        <figcaption><h3>Rose Sprig</h3><span class="id">ORN · 09</span></figcaption>
+        <p class="note">Vertical filler for list margins · 220 × 220</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IV. DRAPERY ============ -->
+<section class="sec" id="drapery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">IV</div>
+      <div>
+        <h2>Drapery &amp; Tassels</h2>
+        <p>Velvet Swag · Gold Fringe · Rope &amp; Tassel</p>
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+
+    <div class="grid">
+      <figure class="orn span-8 reveal">
+        <div class="stage" style="min-height:250px">
+          <svg viewBox="0 0 800 300">
+            <path d="M0 0 H800 V26 C 660 40 560 74 480 118 C 430 146 400 168 400 178 C 400 168 370 146 320 118 C 240 74 140 40 0 26 Z" fill="url(#g-velvet)"/>
+            <path d="M0 26 C 140 40 240 74 320 118 C 370 146 400 168 400 178 C 400 168 430 146 480 118 C 560 74 660 40 800 26" fill="none" stroke="url(#g-gold-h)" stroke-width="2.4"/>
+            <path d="M0 26 C 140 40 240 74 320 118 C 370 146 400 168 400 178 C 400 168 430 146 480 118 C 560 74 660 40 800 26" fill="none" stroke="#e9cb8c" stroke-width="9" stroke-linecap="round" stroke-dasharray="1 8" opacity=".8"/>
+            <path d="M0 8 C 150 22 250 56 330 98 C 380 126 420 126 470 98 C 550 56 650 22 800 8" fill="none" stroke="url(#g-gold-h)" stroke-width="2" opacity=".9"/>
+            <path d="M24 30 C 34 96 32 168 20 262 L 0 262 L 0 28 Z" fill="url(#g-velvet-2)"/>
+            <path d="M776 30 C 766 96 768 168 780 262 L 800 262 L 800 28 Z" fill="url(#g-velvet-2)"/>
+            <path d="M24 30 C 34 96 32 168 20 262 M776 30 C 766 96 768 168 780 262" fill="none" stroke="#e9cb8c" stroke-width="2" opacity=".65"/>
+            <g transform="translate(46,60) scale(.72)"><use href="#rope" width="200" height="40"/></g>
+            <g transform="translate(554,60) scale(.72)"><use href="#rope" width="200" height="40"/></g>
+            <use href="#tassel" x="86" y="86" width="60" height="130"/>
+            <use href="#tassel" x="654" y="86" width="60" height="130"/>
+            <g fill="url(#g-gold)">
+              <circle cx="400" cy="182" r="6"/>
+              <path d="M400 190 C 406 204 412 212 420 216 C 412 222 406 232 400 246 C 394 232 388 222 380 216 C 388 212 394 204 400 190 Z"/>
+            </g>
+          </svg>
+        </div>
+        <figcaption><h3>Velvet Curtain Swag</h3><span class="id">ORN · 10</span></figcaption>
+        <p class="note">Scalloped drape · dotted gold fringe · side panels · 800 × 300</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+
+      <figure class="orn span-4 reveal d1">
+        <div class="stage" style="min-height:250px">
+          <svg viewBox="0 0 260 300">
+            <g transform="translate(30,26)"><use href="#rope" width="200" height="40"/></g>
+            <use href="#tassel" x="70" y="52" width="60" height="130"/>
+            <use href="#tassel" x="132" y="72" width="60" height="130" opacity=".9"/>
+            <g fill="url(#g-gold)">
+              <circle cx="100" cy="212" r="5"/><circle cx="162" cy="232" r="5"/>
+            </g>
+            <path d="M40 250 C 90 236 170 236 220 250" fill="none" stroke="url(#g-gold-h)" stroke-width="1.4"/>
+          </svg>
+        </div>
+        <figcaption><h3>Tassel &amp; Rope</h3><span class="id">ORN · 11</span></figcaption>
+        <p class="note">Twisted gold cord · twin tassels · 260 × 300</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ V. SYMBOLS ============ -->
+<section class="sec" id="symbols">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">V</div>
+      <div>
+        <h2>Simbol</h2>
+        <p>Wedding Rings · Calendar · Location · Fleuron</p>
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+
+    <div class="grid">
+      <!-- rings -->
+      <figure class="orn span-6 reveal">
+        <div class="stage" style="min-height:210px">
+          <svg viewBox="0 0 320 180">
+            <g fill="none" stroke="url(#g-gold-h)" stroke-width="11">
+              <circle cx="128" cy="102" r="52"/>
+              <circle cx="196" cy="102" r="52"/>
+            </g>
+            <g fill="none" stroke="#f6e6bd" stroke-width="2.6" stroke-linecap="round" opacity=".75">
+              <path d="M100 72 C 112 58 134 52 152 60"/>
+              <path d="M172 74 C 184 60 204 54 222 62"/>
+            </g>
+            <path d="M162 28 L 172 46 L 162 64 L 152 46 Z" fill="url(#g-gold)"/>
+            <path d="M162 12 C 166 18 172 22 180 24 C 172 26 166 30 162 36 C 158 30 152 26 144 24 C 152 22 158 18 162 12 Z" fill="url(#g-gold)"/>
+            <circle cx="82" cy="146" r="3" fill="url(#g-gold)"/>
+            <circle cx="242" cy="146" r="3" fill="url(#g-gold)"/>
+          </svg>
+        </div>
+        <figcaption><h3>Wedding Rings</h3><span class="id">ORN · 12</span></figcaption>
+        <p class="note">Twin bands · faceted stone · 320 × 180</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+
+      <!-- icons -->
+      <figure class="orn span-6 reveal d1">
+        <div class="stage" style="min-height:210px">
+          <svg viewBox="0 0 420 180">
+            <!-- calendar -->
+            <g transform="translate(48,28)">
+              <rect x="0" y="14" width="86" height="78" rx="6" fill="none" stroke="url(#g-gold-h)" stroke-width="5"/>
+              <path d="M0 38 H86" stroke="url(#g-gold-h)" stroke-width="5"/>
+              <path d="M22 2 V26 M64 2 V26" stroke="url(#g-gold-h)" stroke-width="6" stroke-linecap="round"/>
+              <g fill="#7c1220">
+                <rect x="16" y="52" width="12" height="12" rx="2"/><rect x="38" y="52" width="12" height="12" rx="2"/><rect x="60" y="52" width="12" height="12" rx="2"/>
+                <rect x="16" y="72" width="12" height="12" rx="2"/><rect x="38" y="72" width="12" height="12" rx="2"/>
+              </g>
+            </g>
+            <!-- pin -->
+            <g transform="translate(200,22)">
+              <path d="M42 6 C 22 6 8 22 8 42 C 8 68 42 110 42 110 C 42 110 76 68 76 42 C 76 22 62 6 42 6 Z" fill="none" stroke="url(#g-gold-h)" stroke-width="6" stroke-linejoin="round"/>
+              <circle cx="42" cy="42" r="14" fill="#7c1220"/>
+              <circle cx="42" cy="42" r="6" fill="url(#g-gold)"/>
+            </g>
+            <!-- fleuron -->
+            <g transform="translate(310,26)"><use href="#fleuron" width="120" height="90"/></g>
+            <path d="M30 148 H390" stroke="url(#g-gold-h)" stroke-width="1.2" opacity=".7"/>
+          </svg>
+        </div>
+        <figcaption><h3>Event Icons</h3><span class="id">ORN · 13</span></figcaption>
+        <p class="note">Calendar · map pin · gold fleuron · 420 × 180</p>
+        <button class="copy" data-copy>Copy SVG</button>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <svg viewBox="0 0 320 90" style="width:min(320px,70%);height:auto" aria-hidden="true">
+      <g fill="none" stroke="url(#g-gold-h)" stroke-width="1.3" stroke-linecap="round">
+        <path d="M10 45 C 40 22 70 68 100 45"/>
+        <path d="M220 45 C 250 22 280 68 310 45"/>
+      </g>
+      <g fill="url(#g-gold)">
+        <circle cx="82" cy="45" r="3.2"/><circle cx="238" cy="45" r="3.2"/>
+      </g>
+      <g transform="translate(160,45)">
+        <circle cx="-13" cy="0" r="17" fill="none" stroke="url(#g-gold-h)" stroke-width="5"/>
+        <circle cx="13" cy="0" r="17" fill="none" stroke="url(#g-gold-h)" stroke-width="5"/>
+      </g>
+    </svg>
+    <p class="script">terima kasih</p>
+    <p class="fnote">Ornamenta · Vector Ornament Kit · Drawn in SVG</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast">SVG copied to clipboard</div>
+
+<script>
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const btn = document.getElementById('themeToggle');
+  btn.addEventListener('click', ()=>{
+    document.body.classList.toggle('night');
+    btn.textContent = document.body.classList.contains('night') ? 'Mode Terang' : 'Mode Malam';
+  });
+
+  const toast = document.getElementById('toast');
+  let t;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(t);
+    t = setTimeout(()=>toast.classList.remove('show'), 2200);
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const card = btn.closest('.orn');
+      const src = card.querySelector('.stage svg');
+      const clone = src.cloneNode(true);
+      clone.setAttribute('xmlns','http://www.w3.org/2000/svg');
+      clone.setAttribute('xmlns:xlink','http://www.w3.org/1999/xlink');
+      clone.insertAdjacentHTML('afterbegin','<defs>'+document.getElementById('core-defs').innerHTML+'</defs>');
+      const code = '<?xml version="1.0" encoding="UTF-8"?>\n' + clone.outerHTML;
+      try{
+        await navigator.clipboard.writeText(code);
+        showToast('SVG copied to clipboard');
+      }catch(err){
+        const ta = document.createElement('textarea');
+        ta.value = code; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); ta.remove();
+        showToast('SVG copied to clipboard');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

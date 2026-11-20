@@ -1,166 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useCallback, useState } from 'react';
+import OrnamentDefs from './components/ornaments/OrnamentDefs';
+import { PageAtmosphere } from './components/layout/SiteChrome';
+import HomePage from './pages/HomePage';
+import TemplatesPage from './pages/TemplatesPage';
+import CreatePage from './pages/CreatePage';
+import InvitationPage from './pages/InvitationPage';
+import RedElegantInvitation from './pages/RedElegantInvitation';
+import { DEFAULT_DRAFT, TEMPLATES, loadDraft, saveDraft, isRedElegants } from './data/templates';
 
-import invitationData from './data/invitationData.json';
-import themesRegistry from './data/themes.json';
-import { useGuestName } from './hooks/useGuestName';
-
-import MobileContainer from './components/layout/MobileContainer';
-import FloatingNavbar from './components/layout/FloatingNavbar';
-import AudioPlayer from './components/layout/AudioPlayer';
-import ScreenOrnaments from './components/layout/ScreenOrnaments';
-
-import OpeningSection from './components/sections/01_OpeningSection';
-import CoupleSection from './components/sections/02_CoupleSection';
-import QuotesSection from './components/sections/03_QuotesSection';
-import EventSection from './components/sections/04_EventSection';
-import CountdownSection from './components/sections/05_CountdownSection';
-import GallerySection from './components/sections/06_GallerySection';
-import RsvpSection from './components/sections/07_RsvpSection';
-import GiftSection from './components/sections/08_GiftSection';
-import ThanksSection from './components/sections/09_ThanksSection';
+function resolveRoute() {
+  if (typeof window === 'undefined') return 'home';
+  const h = (window.location.hash || '#home').replace('#', '').trim();
+  if (['home', 'templates', 'create', 'invitation'].includes(h)) return h;
+  return 'home';
+}
 
 export default function App() {
-  const guestName = useGuestName('Tamu Undangan');
-  const [activePage, setActivePage] = useState('opening');
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const [autoPlayRequested, setAutoPlayRequested] = useState(false);
-
-  // Determine initial template from URL (?theme=jawa / ?theme=monokrom / ?theme=monochrome) or invitationData.json
-  const resolveThemeKey = (rawKey) => {
-    if (!rawKey) return null;
-    const normalized = rawKey.toLowerCase().trim();
-    const aliases = {
-      monokrom: 'monochrome',
-      monochrome: 'monochrome',
-      hitam: 'monochrome',
-      jawa: 'jawa',
-      javanese: 'jawa',
-    };
-    const mapped = aliases[normalized] || normalized;
-    return themesRegistry[mapped] ? mapped : null;
-  };
-
-  const [activeThemeKey] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const urlTheme = resolveThemeKey(params.get('theme'));
-      if (urlTheme) {
-        return urlTheme;
-      }
-    }
-    return resolveThemeKey(invitationData.meta.theme) || 'jawa';
+  const [route, setRoute] = useState(() => resolveRoute());
+  const [selectedTemplate, setSelectedTemplate] = useState(
+    () => TEMPLATES.find((t) => t.status === 'active')?.id || TEMPLATES[0].id
+  );
+  const [draft, setDraft] = useState(() => {
+    const loaded = loadDraft();
+    return loaded || { ...DEFAULT_DRAFT };
   });
 
-  const currentTheme = themesRegistry[activeThemeKey] || themesRegistry.jawa;
-
-  // Apply active template CSS variables dynamically to :root
-  useEffect(() => {
-    const root = document.documentElement;
-    const colors = currentTheme.colors;
-    if (colors) {
-      if (colors.surface) root.style.setProperty('--theme-surface', colors.surface);
-      ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'].forEach((shade) => {
-        if (colors[shade]) {
-          root.style.setProperty(`--theme-${shade}`, colors[shade]);
-        }
-      });
+  const navigate = useCallback((next) => {
+    setRoute(next);
+    if (typeof window !== 'undefined') {
+      window.location.hash = next;
+      window.scrollTo({ top: 0, behavior: 'auto' });
     }
-  }, [currentTheme]);
-
-  // Initialize AOS once on mount
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: false,
-      easing: 'ease-out-cubic',
-      mirror: true,
-      offset: 0,
-    });
   }, []);
 
-  // Trigger AOS re-animation every time activePage or template changes
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      AOS.refreshHard();
-    }, 60);
+  const handleDraftChange = useCallback((next) => {
+    setDraft(next);
+    saveDraft(next);
+  }, []);
 
-    return () => clearTimeout(timer);
-  }, [activePage, activeThemeKey]);
+  React.useEffect(() => {
+    const onHash = () => setRoute(resolveRoute());
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
 
-  const handleOpenInvitation = () => {
-    setIsUnlocked(true);
-    setAutoPlayRequested(true);
-    setActivePage('couple');
-  };
+  // Keep body background clean for marketing + invitation
+  React.useEffect(() => {
+    document.body.style.backgroundColor = '';
+    document.body.classList.remove('locked');
+  }, [route]);
 
-  const handleSelectPage = (pageId) => {
-    setActivePage(pageId);
-  };
-
-  const renderActivePage = () => {
-    switch (activePage) {
-      case 'opening':
-        return (
-          <OpeningSection
-            data={invitationData}
-            themeConfig={currentTheme}
-            guestName={guestName}
-            onOpenInvitation={handleOpenInvitation}
-            isUnlocked={isUnlocked}
-          />
-        );
-      case 'couple':
-        return <CoupleSection data={invitationData} themeConfig={currentTheme} />;
-      case 'quotes':
-        return <QuotesSection data={invitationData} />;
-      case 'event':
-        return <EventSection data={invitationData} />;
-      case 'countdown':
-        return <CountdownSection data={invitationData} />;
-      case 'gallery':
-        return <GallerySection data={invitationData} themeConfig={currentTheme} />;
-      case 'rsvp':
-        return <RsvpSection guestName={guestName} />;
-      case 'gift':
-        return <GiftSection data={invitationData} />;
-      case 'thanks':
-        return <ThanksSection data={invitationData} />;
-      default:
-        return <CoupleSection data={invitationData} themeConfig={currentTheme} />;
-    }
-  };
-
-  const ornamentsEnabled = currentTheme?.ornaments?.enabled ?? false;
+  let page;
+  switch (route) {
+    case 'templates':
+      page = (
+        <TemplatesPage
+          onNavigate={navigate}
+          selectedTemplate={selectedTemplate}
+          onSelectTemplate={setSelectedTemplate}
+        />
+      );
+      break;
+    case 'create':
+      page = (
+        <CreatePage
+          onNavigate={navigate}
+          draft={draft}
+          onDraftChange={handleDraftChange}
+          selectedTemplate={selectedTemplate}
+        />
+      );
+      break;
+    case 'invitation':
+      page = isRedElegants(selectedTemplate) ? (
+        <RedElegantInvitation onNavigate={navigate} draft={draft} />
+      ) : (
+        <InvitationPage onNavigate={navigate} draft={draft} />
+      );
+      break;
+    case 'home':
+    default:
+      page = <HomePage onNavigate={navigate} />;
+  }
 
   return (
-    <MobileContainer>
-      {/* Ornamen Sudut Atas (Hanya aktif jika template mengaktifkan ornamen dan bukan di halaman Opening) */}
-      {ornamentsEnabled && activePage !== 'opening' && (
-        <ScreenOrnaments config={currentTheme.ornaments} />
-      )}
-
-      {/* Floating Audio Player Control (Available once unlocked) */}
-      <AudioPlayer 
-        audioUrl={invitationData.meta.audioUrl} 
-        autoPlayRequested={autoPlayRequested} 
-      />
-
-      {/* Screen Viewport: Strictly 100% height, zero window scroll */}
-      <div 
-        key={`${activePage}-${activeThemeKey}`}
-        className="w-full h-full max-h-[100dvh] overflow-hidden relative bg-neutral-50"
-      >
-        {renderActivePage()}
-      </div>
-
-      {/* Floating Bottom Pill Navbar with 4 visible scrollable items */}
-      <FloatingNavbar 
-        isUnlocked={isUnlocked}
-        activePage={activePage}
-        onSelectPage={handleSelectPage}
-      />
-    </MobileContainer>
+    <div className="relative min-h-dvh">
+      <OrnamentDefs />
+      <PageAtmosphere />
+      {page}
+    </div>
   );
 }
